@@ -66,9 +66,17 @@ namespace FacebookGetInfo
             using (mongoServer.RequestStart(db))
             {
                 var userCollection = db.GetCollection<BsonDocument>("UserData");
+                Console.WriteLine();
                 foreach (BsonDocument doc in userCollection.FindAll())
                 {
                     Console.WriteLine(doc.ToJson());
+                }
+                Console.WriteLine();
+                var movieCollection = db.GetCollection("MovieData");
+                foreach (BsonDocument doc in movieCollection.FindAll())
+                {
+                    Console.WriteLine(doc.ToJson());
+                    Console.WriteLine();
                 }
             }
 
