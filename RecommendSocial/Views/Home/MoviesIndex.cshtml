@@ -1,0 +1,63 @@
+﻿@model RecommendSocial.Models.MovieVm
+
+@{
+    ViewBag.Title = "MoviesIndex";
+}
+
+@Html.Partial("TwitterData")
+
+<h2>Rezultati pretrage za upit "@Model.searchName"</h2>
+
+<div class="table-responsive">
+<table class="table">
+@{var i=1;}
+    <thead>
+        <tr>
+        <th>
+            #
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Original title
+        </th>
+        <th>
+            Release date
+        </th>
+        <th>
+            Popularity
+        </th>
+        <th>
+            Average vote (# of votes)
+        </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.movies)
+{
+    <tr>
+        <td>
+            @i
+        </td>
+        <td>
+            @item.title (@Convert.ToDateTime(item.date).Year)
+        </td>
+        <td>
+            @item.originalTitle
+        </td>
+        <td>
+            @item.date
+        </td>
+        <td>
+            @Math.Round(Convert.ToDouble(item.popularity),2,MidpointRounding.AwayFromZero)
+        </td>
+        <td>
+            @item.voteAverage (@item.voteCount)
+        </td>
+    </tr>
+    i += 1;
+}
+        </tbody>
+</table>
+</div>
