@@ -1,22 +1,4 @@
-﻿@model RecommendSocial.Models.MovieVm
-
-@{
-    ViewBag.Title = "MoviesIndex";
-}
-
-@Html.Partial("TwitterData")
-
-@using (Html.BeginForm("MoviesIndex", "Home", FormMethod.Post))
-{
-<div>
-    <div>Unesite ime filma: @Html.TextBoxFor(x => x.searchName)</div>
-    <div><button type="submit">Pretraži</button></div>
-</div>
-
-@Html.Partial("MovieData")
-}
-
-@*<h2>Rezultati pretrage za upit "@Model.searchName"</h2>
+﻿<h2>Rezultati pretrage za upit "@Model.searchName"</h2>
 
 <div class="table-responsive">
 <table class="table">
@@ -70,4 +52,4 @@
 }
         </tbody>
 </table>
-</div>*@
+</div>

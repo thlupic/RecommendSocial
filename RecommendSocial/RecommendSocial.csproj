@@ -204,6 +204,8 @@
     <Compile Include="RS.BLL\Twitter.cs" />
     <Compile Include="RS.Core\TMDBCore.cs" />
     <Compile Include="RS.Core\TwitterCore.cs" />
+    <Compile Include="RS.DAL\DataStorage.cs" />
+    <Compile Include="RS.DAL\Mapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\body.css" />
@@ -322,10 +324,10 @@
     <Content Include="Views\Home\TwitterIndex.cshtml" />
     <Content Include="Views\Home\MoviesIndex.cshtml" />
     <Content Include="Views\Shared\TwitterData.cshtml" />
+    <Content Include="Views\Shared\MovieData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="RS.DAL\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

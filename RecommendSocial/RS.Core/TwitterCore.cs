@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,6 +23,14 @@ namespace RS.Core
 
         public class Tokens
         {
+            public string AccessToken { get; set; }
+            public string AccessTokenSecret { get; set; }
+        }
+
+        public class User
+        {
+            public ObjectId _id { get; set; }
+            public long ID { get; set; }
             public string AccessToken { get; set; }
             public string AccessTokenSecret { get; set; }
         }

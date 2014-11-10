@@ -8,6 +8,7 @@ using Tweetinvi;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using RS.Core;
+using RS.DAL;
 
 namespace RS.BLL
 {
@@ -79,7 +80,18 @@ namespace RS.BLL
             //var newCredentials2 = CredentialsCreator.GetCredentialsFromVerifierCode(captcha, 
             token.AccessToken = newCredentials.AccessToken;
             token.AccessTokenSecret = newCredentials.AccessTokenSecret;
+            
             return token;
+        }
+
+        public static void setTokens(long userID, TwitterCore.Tokens tokens)
+        {
+            Mapper.setTokens(userID, tokens);
+        }
+
+        public static TwitterCore.Tokens getTokens(long userID)
+        {
+            return Mapper.getTokens(userID);
         }
     }
 }
