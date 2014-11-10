@@ -5,11 +5,12 @@
     if (Model==null)
       {
         <div>
-        Unesite PIN za Twitter: @Html.TextBoxFor(x => x.captcha)
+            Unesite PIN za Twitter: @Html.TextBoxFor(x => x.captcha)
         </div>
     
         <div>
-            <button type="submit">Unesi</button>
+            <input type="image" src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png" />
+            @*<a href="~/Views/Home/TwitterIndex"><img src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png" /></a>*@
         </div>
       }
       else
@@ -31,6 +32,7 @@
         @Html.HiddenFor(x => x.name)
         @Html.HiddenFor(x => x.description)
         @Html.HiddenFor(x => x.profileImageLink)
+        @Html.HiddenFor(x => x.twitterID);
         <div>
             <button type="submit">Pretraži</button>
         </div>

@@ -38,7 +38,7 @@ namespace RS.BLL
                 var accessToken = newCredentials.AccessToken;
                 var accessTokenSecret = newCredentials.AccessTokenSecret;
             }
-            catch (Exception ex1)
+            catch
             {
                 var exceptionStatusCode = ExceptionHandler.GetLastException().StatusCode;
                 var exceptionDescription = ExceptionHandler.GetLastException().TwitterDescription;
@@ -92,6 +92,26 @@ namespace RS.BLL
         public static TwitterCore.Tokens getTokens(long userID)
         {
             return Mapper.getTokens(userID);
+        }
+
+        public static UserCore.userData getUserData(long userID)
+        {
+            return Mapper.getUserData((int)userID);
+        }
+
+        public static int getUserID(string username, string password)
+        {
+            return Mapper.getUserID(username, password);
+        }
+
+        public static long getTwitterID(int userID)
+        {
+            return Mapper.getTwitterID(userID);
+        }
+
+        public static void saveUser(string username, string password, long twitterID)
+        {
+            Mapper.storeUserData(username, password, twitterID);
         }
     }
 }

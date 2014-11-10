@@ -15,5 +15,6 @@ namespace RecommendSocial.Models
         public string profileImageLink { get; set; }
         public bool isAuth { get; set; }
         public string searchName { get; set; }
+        public long twitterID { get; set; }
     }
 }

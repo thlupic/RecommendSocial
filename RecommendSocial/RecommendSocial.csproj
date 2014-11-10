@@ -186,7 +186,6 @@
     <Compile Include="BootstrapSupport\HtmlHelpers\Paging.cs" />
     <Compile Include="BootstrapSupport\ViewHelperExtensions.cs" />
     <Compile Include="Controllers\BootstrapBaseController.cs" />
-    <Compile Include="Controllers\ExampleLayoutsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -194,6 +193,7 @@
     <Compile Include="Models\HomeInputModel.cs" />
     <Compile Include="Models\MovieVm.cs" />
     <Compile Include="Models\TwitterVm.cs" />
+    <Compile Include="Models\UserVm.cs" />
     <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
     <Compile Include="NavigationRoutes\NamedRoute.cs" />
     <Compile Include="NavigationRoutes\NavigationExtensions.cs" />
@@ -204,6 +204,7 @@
     <Compile Include="RS.BLL\Twitter.cs" />
     <Compile Include="RS.Core\TMDBCore.cs" />
     <Compile Include="RS.Core\TwitterCore.cs" />
+    <Compile Include="RS.Core\UserCore.cs" />
     <Compile Include="RS.DAL\DataStorage.cs" />
     <Compile Include="RS.DAL\Mapper.cs" />
   </ItemGroup>
@@ -303,18 +304,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_html5shiv.cshtml" />
-    <Content Include="Views\ExampleLayouts\TBD.cshtml" />
-    <Content Include="Views\ExampleLayouts\Starter.cshtml" />
-    <Content Include="Views\ExampleLayouts\SignIn.cshtml" />
-    <Content Include="Views\ExampleLayouts\Narrow.cshtml" />
-    <Content Include="Views\ExampleLayouts\Marketing.cshtml" />
-    <Content Include="Views\ExampleLayouts\Fluid.cshtml" />
     <Content Include="Views\Shared\Index.cshtml" />
-    <Content Include="Views\Shared\Details.cshtml" />
-    <Content Include="Views\Shared\Create.cshtml" />
     <Content Include="Views\Shared\_validationSummary.cshtml" />
     <Content Include="Views\Shared\_BootstrapLayout.narrow.cshtml" />
     <Content Include="Views\Shared\_BootstrapLayout.empty.cshtml" />
@@ -325,6 +317,7 @@
     <Content Include="Views\Home\MoviesIndex.cshtml" />
     <Content Include="Views\Shared\TwitterData.cshtml" />
     <Content Include="Views\Shared\MovieData.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

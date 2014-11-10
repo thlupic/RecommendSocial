@@ -17,11 +17,54 @@ namespace BootstrapMvcSample.Controllers
         public ActionResult Index()
         {
             var homeInputModels = _models;
-            var tokens = Twitter.getTokens(62034498);
-            var authData = new TwitterCore.TwitterAuth();
+            return RedirectToAction("Login");
+        }
 
-            TwitterCredentials.SetCredentials(tokens.AccessToken, tokens.AccessTokenSecret, authData.oAuthConsumerKey, authData.oAuthConsumerSecret);
+        public ActionResult Login()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public ActionResult Login(RecommendSocial.Models.UserVm model)
+        {
+            int userID = Twitter.getUserID(model.username, model.password);
+            Session["username"] = model.username;
+            Session["password"] = model.password;
+            if (userID != 0)
+            {
+                Session["UserID"] = userID;
+                long twitterID = Twitter.getTwitterID(userID);
+                Session["TwitterID"] = twitterID;
+            }
+            else
+            {
+                Session["username"] = model.username;
+                Session["password"] = model.password;
+            }
+            return RedirectToAction("IndexTwitter");
+        }
+
+        public ActionResult IndexTwitter()
+        {
+            string twitterIDString = "";
+            try
+            {
+                twitterIDString = Session["TwitterID"].ToString();
+            }
+            catch
+            {
+            }
+
+            long twitterID = 0;
+            if (twitterIDString!="") 
+            {
+                twitterID = Convert.ToInt64(twitterIDString);
+                var tokens = Twitter.getTokens(twitterID);
+                var authData = new TwitterCore.TwitterAuth();
+
+                TwitterCredentials.SetCredentials(tokens.AccessToken, tokens.AccessTokenSecret, authData.oAuthConsumerKey, authData.oAuthConsumerSecret);
+            }
             var user = Tweetinvi.User.GetLoggedUser();
 
             if (user == null)
@@ -75,6 +118,10 @@ namespace BootstrapMvcSample.Controllers
                 Session["AccessTokenSecret"] = token.AccessTokenSecret;
                 TwitterCredentials.SetCredentials(token.AccessToken, token.AccessTokenSecret, twitterAuth.oAuthConsumerKey, twitterAuth.oAuthConsumerSecret);
                 var user = Tweetinvi.User.GetLoggedUser();
+                if (Session["TwitterID"].ToString() != "")
+                {
+                    Twitter.saveUser(Session["username"].ToString(), Session["password"].ToString(), user.Id);
+                }
                 var credentials = TwitterCredentials.CreateCredentials(token.AccessToken, token.AccessTokenSecret, twitterAuth.oAuthConsumerKey, twitterAuth.oAuthConsumerSecret);
                 Twitter.setTokens(user.Id, token);
                 model.description = user.Description;
