@@ -13,13 +13,11 @@ namespace BootstrapMvcSample
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.MapNavigationRoute<HomeController>("Automatic Scaffolding", c => c.Index());
-
-            routes.MapNavigationRoute<ExampleLayoutsController>("Example Layouts", c => c.Starter())
-                  .AddChildRoute<ExampleLayoutsController>("Marketing", c => c.Marketing())
-                  .AddChildRoute<ExampleLayoutsController>("Fluid", c => c.Fluid())
-                  .AddChildRoute<ExampleLayoutsController>("Sign In", c => c.SignIn())
-                ;
+            routes.MapNavigationRoute<GoogleController>("Google SignIn", c => c.SignIn());
+            routes.MapNavigationRoute<GoogleController>("Rotten Tomatoes", c => c.RottenToematoes());
+            routes.MapNavigationRoute<GoogleController>("Movies", c => c.Movies());
+            routes.MapNavigationRoute<GoogleController>("Playlists", c => c.Playlists());
+            routes.MapNavigationRoute<GoogleController>("Store playlists", c => c.StorePlaylists());
         }
     }
 }
