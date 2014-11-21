@@ -63,6 +63,9 @@ namespace FacebookGetInfo
         {
             MongoServer mongoServer = MongoServer.Create();
             var db = mongoServer.GetDatabase("mydb");
+            string AccessToken = "CAACEdEose0cBAMOfMkvWdmDYU7N4oDcZATEbqdRkFfQWYcMKEZCKOWVZBlc2foDbviybHgTX7cgAwjHVnHlX0uI5forZCe0sn5GY51z6QNMRkyRPAlXY7ZCUdythjNl7ufZBc9oCcVUtgxiDJ0B09q6ls8eHWO1OqxYrYW6GkRpvcfeFeNAs6is61mP8mJAutZBC9BlRBXMVIPpGK0I5fPcs71YLbzVew0ZD";
+            readFacebookData(AccessToken);
+            readMovies();
             using (mongoServer.RequestStart(db))
             {
                 var userCollection = db.GetCollection<BsonDocument>("UserData");
@@ -80,9 +83,6 @@ namespace FacebookGetInfo
                 }
             }
 
-            string AccessToken = "CAACEdEose0cBAETtn3rPTQBpBjdu18rZBIE9oYbLL6EH0DnxjyXT24AwVQTe2WKghSvlNS86XyVPxTFsGzZCLFKC88QER6O3bKllYO1pE50fnr6bydWKEercPscPnxiMZBM1WZBkZBcxI5GDgGAd9XdWAWuN9hPb4brW4cneyUawpgpSndssow74fhZCDzsHsq84Q15U5EZCSqWGQSJYK2ZBZCIlrEnAUFG8ZD";
-            //readFacebookData(AccessToken);
-            //readMovies();
             mongoServer.Disconnect();
         }
     }
