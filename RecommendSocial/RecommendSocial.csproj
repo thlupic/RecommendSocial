@@ -186,6 +186,7 @@
     <Compile Include="BootstrapSupport\HtmlHelpers\Paging.cs" />
     <Compile Include="BootstrapSupport\ViewHelperExtensions.cs" />
     <Compile Include="Controllers\BootstrapBaseController.cs" />
+    <Compile Include="Controllers\GoogleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -200,13 +201,6 @@
     <Compile Include="NavigationRoutes\NavigationRouteConfigurationExtensions.cs" />
     <Compile Include="NavigationRoutes\NavigationRouteFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RS.BLL\MovieDB.cs" />
-    <Compile Include="RS.BLL\Twitter.cs" />
-    <Compile Include="RS.Core\TMDBCore.cs" />
-    <Compile Include="RS.Core\TwitterCore.cs" />
-    <Compile Include="RS.Core\UserCore.cs" />
-    <Compile Include="RS.DAL\DataStorage.cs" />
-    <Compile Include="RS.DAL\Mapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\body.css" />
@@ -273,6 +267,15 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="References\Antlr3.Runtime.dll" />
+    <Content Include="References\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="References\Newtonsoft.Json.dll" />
+    <Content Include="References\Ninject.dll" />
+    <Content Include="References\Ninject.Web.Common.dll" />
+    <Content Include="References\Ninject.Web.Mvc.dll" />
+    <Content Include="References\oAuthTwitterWrapper.dll" />
+    <Content Include="References\WebActivator.dll" />
+    <Content Include="References\WebGrease.dll" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\html5shiv.js" />
@@ -318,6 +321,8 @@
     <Content Include="Views\Shared\TwitterData.cshtml" />
     <Content Include="Views\Shared\MovieData.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Google\Client.cshtml" />
+    <Content Include="Views\Google\SignIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
