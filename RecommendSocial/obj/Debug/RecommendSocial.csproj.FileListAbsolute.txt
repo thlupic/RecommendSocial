@@ -36,7 +36,6 @@ D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\Microsoft.Web.Mvc.dll
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\MongoDB.Bson.dll
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\MongoDB.Driver.dll
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\Newtonsoft.Json.dll
-D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\oAuthTwitterWrapper.dll
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\System.Web.Mvc.dll
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\System.Web.Optimization.dll
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\System.Web.Providers.dll
@@ -73,3 +72,11 @@ D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\Tweetinvi.WebLogic.dll
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\Autofac.xml
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\Microsoft.Threading.Tasks.xml
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\Microsoft.Threading.Tasks.Extensions.xml
+D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\Facebook.dll
+D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\RS.BLL.dll
+D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\RS.Core.dll
+D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\RS.DAL.dll
+D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\RS.BLL.pdb
+D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\RS.Core.pdb
+D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\Facebook.xml
+D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\RS.DAL.pdb
