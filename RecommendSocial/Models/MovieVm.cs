@@ -10,11 +10,11 @@ namespace RecommendSocial.Models
     public class MovieVm
     {
         public string searchName { get; set; }
-        public List<TMDBCore.movieData> movies { get; set; }
+        public List<moviesCore.movieData> movies { get; set; }
 
         public MovieVm()
         {
-            this.movies = new List<TMDBCore.movieData>();
+            this.movies = new List<moviesCore.movieData>();
         }
     }
 }

@@ -6,11 +6,18 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using RS.Core;
+using WebService;
+using MongoDB.Bson;
 
 namespace RS.BLL
 {
     public class MovieDB
     {
+        public static string apiKey = "14526d01d666a48a486e579c77ba4d74";
+        public static string RTapiKey = "sn6wtjvtm67kh73j72vvhk57";
+        private static Methods webMethods = new Methods();
+        private static Serialization serializer = new Serialization();
+
         #region JSON
         public class movieJSON
         {
@@ -66,8 +73,6 @@ namespace RS.BLL
             //Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
             System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
 
-            string apiKey = "14526d01d666a48a486e579c77ba4d74";
-
             string URI = String.Format("http://api.themoviedb.org/3/search/movie?api_key={0}&query={1}", apiKey, name);
 
             var request = System.Net.WebRequest.Create(URI) as System.Net.HttpWebRequest;
@@ -86,6 +91,63 @@ namespace RS.BLL
             }
         }
 
+        public static void getGenres()
+        {
+            HashSet<moviesCore.movieDataTMDB> allMovies = new HashSet<moviesCore.movieDataTMDB>();
+            HashSet<moviesCore.movieDataOMDB> OMDBMovies = new HashSet<moviesCore.movieDataOMDB>();
+            System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+            string URI = String.Format("http://api.themoviedb.org/3/genre/movie/list?api_key={0}", apiKey);
+
+            var genres = JsonConvert.DeserializeObject<moviesCore.movieGenres>(webMethods.GET(URI));
+
+            int totalResults = 0;
+
+            foreach (var item in genres.genreList)
+            {
+                URI = String.Format("http://api.themoviedb.org/3/genre/{0}/movies?api_key={1}", item.genreID, apiKey);
+
+                var movies = JsonConvert.DeserializeObject<moviesCore.moviesData>(webMethods.GET(URI));
+
+                for (var i = 1; i <= movies.totalPages; i++)
+                {
+                    URI = String.Format("http://api.themoviedb.org/3/genre/{0}/movies?api_key={1}&page={2}", item.genreID, apiKey,i);
+
+                    var movies1 = JsonConvert.DeserializeObject<moviesCore.moviesData>(webMethods.GET(URI));
+
+                    foreach (var movie in movies1.movies)
+                    {
+                        var name = movie.originalTitle;
+                        var nameParts = name.Split(' ');
+                        string nameSearch = "";
+                        foreach (var namepart in nameParts)
+                        {
+                            nameSearch += String.Format("+{0}", namepart);
+                        }
+                        nameSearch = nameSearch.Substring(1, nameSearch.Length - 1);
+                        var releaseDate = movie.date;
+                        string year = "";
+                        if (releaseDate != "") { year = Convert.ToDateTime(releaseDate).Year.ToString(); }
+                        URI = String.Format("http://www.omdbapi.com/?t={0}&y={1}&plot=short&r=json", nameSearch.ToLower(),year);                        
+                        allMovies.Add(movie);
+
+                        var OMDBmovie =JsonConvert.DeserializeObject<moviesCore.movieDataOMDB>(webMethods.GET(URI));
+                        var imdbID = OMDBmovie.imdbID;
+                        if (imdbID != null)
+                        {
+                            imdbID = imdbID.Substring(2, imdbID.Length - 2);
+                        }
+
+                        URI = String.Format("http://api.rottentomatoes.com/api/public/v1.0/movie_alias.json?apikey={0}&type=imdb&id={1}", RTapiKey, imdbID);
+                        var RTdata = webMethods.GET(URI);
+                        var RTcore = JsonConvert.DeserializeObject<moviesCore.movieDataRT>(RTdata);
+                    }
+                }
+            }
+
+            totalResults += 0;
+        }
+
         public static object DeserializeFromStream(Stream stream)
         {
             var serializer = new JsonSerializer();
@@ -97,13 +159,13 @@ namespace RS.BLL
             }
         }
 
-        public static List<TMDBCore.movieData> MappToCore(List<movie> JSONMovies)
+        public static List<moviesCore.movieData> MappToCore(List<movie> JSONMovies)
         {
-            List<TMDBCore.movieData> movieData = new List<TMDBCore.movieData>();
+            List<moviesCore.movieData> moviesData = new List<moviesCore.movieData>();
 
             foreach (var item in JSONMovies)
             {
-                var movie = new TMDBCore.movieData();
+                var movie = new moviesCore.movieData();
                 movie.adult = item.adult;
                 movie.date = item.date;
                 movie.id = item.id;
@@ -114,10 +176,10 @@ namespace RS.BLL
                 movie.title = item.title;
                 movie.voteAverage = item.voteAverage;
                 movie.voteCount = item.voteCount;
-                movieData.Add(movie);
+                moviesData.Add(movie);
             }
 
-            return movieData;
+            return moviesData;
         }
 
     }

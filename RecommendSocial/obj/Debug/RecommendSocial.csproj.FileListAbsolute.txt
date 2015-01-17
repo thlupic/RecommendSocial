@@ -55,7 +55,6 @@ D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\System.Web.WebPages.Deplo
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\System.Web.WebPages.Razor.xml
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\System.Web.Helpers.dll
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\System.Web.Helpers.xml
-D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\RecommendSocial.dll.config
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\Autofac.dll
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\Microsoft.Threading.Tasks.dll
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\Microsoft.Threading.Tasks.Extensions.dll
@@ -80,3 +79,6 @@ D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\RS.BLL.pdb
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\RS.Core.pdb
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\Facebook.xml
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\RS.DAL.pdb
+D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\WebService.dll
+D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\WebService.pdb
+D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\RecommendSocial.dll.config

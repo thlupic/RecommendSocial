@@ -8,12 +8,14 @@ using RS.BLL;
 using RS.Core;
 using System.Diagnostics;
 using Tweetinvi;
+using WebService;
 
 namespace BootstrapMvcSample.Controllers
 {
     public class HomeController : BootstrapBaseController
     {
         private static List<HomeInputModel> _models = ModelIntializer.CreateHomeInputModels();
+
         public ActionResult Index()
         {
             var homeInputModels = _models;
@@ -135,6 +137,7 @@ namespace BootstrapMvcSample.Controllers
             else
             {
                 var modelMovies = new RecommendSocial.Models.MovieVm();
+                MovieDB.getGenres();
                 var JsonResult = MovieDB.getSearch(model.searchName);
                 modelMovies.searchName = model.searchName;
                 modelMovies.movies = MovieDB.MappToCore(JsonResult);

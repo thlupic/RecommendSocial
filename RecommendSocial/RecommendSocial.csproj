@@ -342,6 +342,10 @@
       <Project>{a63147a5-7f73-4866-9696-3d99b3ca7654}</Project>
       <Name>RS.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebService\WebService.csproj">
+      <Project>{58256fcb-fe19-41c8-89bc-1f5f628e70e7}</Project>
+      <Name>WebService</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

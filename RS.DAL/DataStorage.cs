@@ -19,6 +19,7 @@ namespace RS.DAL
         private static MongoServer server = client.GetServer();
         private static MongoDatabase database = server.GetDatabase("local");
 
+        #region twitter
         public static TwitterCore.Tokens getTokens(string userName)
         {
             TwitterCore.Tokens userTokens = new TwitterCore.Tokens();
@@ -86,5 +87,13 @@ namespace RS.DAL
             if (userData != null & userData.twitterID != 0) return userData.twitterID;
             else return 0;
         }
+        #endregion
+
+        #region movies
+        public static void storeMovie()
+        {
+        }
+
+        #endregion
     }
 }

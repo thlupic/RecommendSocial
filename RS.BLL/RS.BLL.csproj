@@ -109,6 +109,10 @@
       <Project>{e70b9eb3-57f9-4b62-ae25-ff2e338cbe9a}</Project>
       <Name>RS.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebService\WebService.csproj">
+      <Project>{58256fcb-fe19-41c8-89bc-1f5f628e70e7}</Project>
+      <Name>WebService</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
