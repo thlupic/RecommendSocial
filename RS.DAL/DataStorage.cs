@@ -14,10 +14,12 @@ namespace RS.DAL
 {
     public class DataStorage
     {
-        private static string connectionString = "mongodb://localhost";
+        //private static string connectionString = "mongodb://localhost";
+        private static string connectionString = "mongodb://rcsocial:RCsocial@ds031631.mongolab.com:31631/recommendsocial";
         private static MongoClient client = new MongoClient(connectionString);
         private static MongoServer server = client.GetServer();
-        private static MongoDatabase database = server.GetDatabase("local");
+        //private static MongoDatabase database = server.GetDatabase("local");
+        private static MongoDatabase database = server.GetDatabase("recommendsocial");
 
         #region twitter
         public static TwitterCore.Tokens getTokens(string userName)
@@ -90,8 +92,16 @@ namespace RS.DAL
         #endregion
 
         #region movies
-        public static void storeMovie()
+        public static void storeMovie(moviesCore.movieDBData movie)
         {
+            MongoCollection<moviesCore.movieDBData> collection = database.GetCollection<moviesCore.movieDBData>("Movies");
+            collection.Insert(movie);
+        }
+
+        public static void storeGenre(moviesCore.moviesGenreTMDB genre)
+        {
+            MongoCollection<moviesCore.moviesGenreTMDB> collection = database.GetCollection<moviesCore.moviesGenreTMDB>("Genres");
+            collection.Insert(genre);
         }
 
         #endregion

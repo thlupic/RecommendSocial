@@ -24,19 +24,20 @@ namespace RS.Core
         public class movieDBData
         {
             public string IMDBID { get; set; }
-            public string OMDBID { get; set; }
+            public string TMDBID { get; set; }
             public string RTID { get; set; }
             public string title { get; set; }
             public int year { get; set; }
-            public List<actor> cast { get; set; }
-            public List<moviesGenreTMDB> genres { get; set; }
+            public List<actorRT> cast { get; set; }
+            public movieGenres genres { get; set; }
             public double imdbScore { get; set; }
             public string director { get; set; }
+            public string facebookLink { get; set; }
 
             public movieDBData()
             {
-                cast = new List<actor>();
-                genres = new List<moviesGenreTMDB>();
+                cast = new List<actorRT>();
+                genres = new movieGenres();
             }
         }
 
@@ -165,6 +166,14 @@ namespace RS.Core
         {
             [JsonProperty("id")]
             public int id { get; set; }
+
+            [JsonProperty("abriged_cast")]
+            public List<actorRT> cast { get; set; }
+
+            public movieDataRT()
+            {
+                cast = new List<actorRT>();
+            }
         }
 
         public class castRT
@@ -180,34 +189,16 @@ namespace RS.Core
 
         public class actorRT
         {
-            [JsonProperty("id")]
-            public string id { get; set; }
-
             [JsonProperty("name")]
             public string name { get; set; }
-        }
 
-        public class actor
-        {
-            public int ID { get; set; }
-            public int name { get; set; }
-        }
+            [JsonProperty("characters")]
+            public List<string> characters { get; set; }
 
-        public class movieData
-        {
-            public string adult { get; set; }
-            public string path { get; set; }
-            public string id { get; set; }
-            public string originalTitle { get; set; }
-            public string date { get; set; }
-            public string posterPath { get; set; }
-            public string popularity { get; set; }
-            public string title { get; set; }
-            public string voteAverage { get; set; }
-            public string voteCount { get; set; }
-            public string IMDB_link { get; set; }
-            public string IMDB_rating { get; set; }
-            public List<actor> cast { get; set; }
+            public actorRT()
+            {
+                characters = new List<string>();
+            }
         }
     }
 }

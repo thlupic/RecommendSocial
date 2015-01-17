@@ -17,89 +17,25 @@ namespace RS.BLL
         public static string RTapiKey = "sn6wtjvtm67kh73j72vvhk57";
         private static Methods webMethods = new Methods();
         private static Serialization serializer = new Serialization();
+        private static IMDBScrape scrapper = new IMDBScrape();
 
-        #region JSON
-        public class movieJSON
+        //dohvati sve zanrove sa TMDB
+        public static moviesCore.movieGenres getAllGenres()
         {
-            [JsonProperty("page")]
-            public int Page { get; set; }
-
-            [JsonProperty("results")]
-            public List<movie> movies { get; set; }
-
-            [JsonProperty("total_pages")]
-            public int totalPages { get; set; }
-
-            [JsonProperty("total_results")]
-            public int totalResults { get; set; }
-        }
-
-        public class movie
-        {
-            [JsonProperty("adult")]
-            public string adult {get;set;}
-
-            [JsonProperty("backdrop_path")]
-            public string path {get;set;}
-
-            [JsonProperty("id")]
-            public string id {get;set;}
-
-            [JsonProperty("original_title")]
-            public string originalTitle {get;set;}
-
-            [JsonProperty("release_date")]
-            public string date {get;set;}
-
-            [JsonProperty("poster_path")]
-            public string posterPath {get;set;}
-
-            [JsonProperty("popularity")]
-            public string popularity {get;set;}
-
-            [JsonProperty("title")]
-            public string title {get;set;}
-
-            [JsonProperty("vote_average")]
-            public string  voteAverage {get;set;}
-
-            [JsonProperty("vote_count")]
-            public string voteCount { get; set; }
-        }
-        #endregion
-
-        public static List<movie> getSearch(string name)
-        {
-            //Common testing requirement. If you are consuming an API in a sandbox/test region, uncomment this line of code ONLY for non production uses.
-            System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-
-            string URI = String.Format("http://api.themoviedb.org/3/search/movie?api_key={0}&query={1}", apiKey, name);
-
-            var request = System.Net.WebRequest.Create(URI) as System.Net.HttpWebRequest;
-            request.KeepAlive = true;
-
-            request.Method = "GET";
-
-            request.Accept = "application/json";
-            request.ContentLength = 0;
-            var serializer = new JsonSerializer();
-            using (var response = request.GetResponse() as System.Net.HttpWebResponse)
-            {
-                var jsonResponse = DeserializeFromStream(response.GetResponseStream());
-                var results = JsonConvert.DeserializeObject<movieJSON>(jsonResponse.ToString());
-                return results.movies;
-            }
-        }
-
-        public static void getGenres()
-        {
-            HashSet<moviesCore.movieDataTMDB> allMovies = new HashSet<moviesCore.movieDataTMDB>();
-            HashSet<moviesCore.movieDataOMDB> OMDBMovies = new HashSet<moviesCore.movieDataOMDB>();
-            System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-
             string URI = String.Format("http://api.themoviedb.org/3/genre/movie/list?api_key={0}", apiKey);
 
-            var genres = JsonConvert.DeserializeObject<moviesCore.movieGenres>(webMethods.GET(URI));
+            return JsonConvert.DeserializeObject<moviesCore.movieGenres>(webMethods.GET(URI));
+        }
+
+        //dohvaca sve filmove razvrstane po zanrovima i pridjeljuje im vrijdnosti iz TMDB, IMDB i RottenTomatoes
+        public static List<moviesCore.movieDBData> getMoviesByGenres()
+        {
+            HashSet<moviesCore.movieDBData> movieData = new HashSet<moviesCore.movieDBData>();
+            System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+            string URI = "";
+
+            var genres = getAllGenres();
 
             int totalResults = 0;
 
@@ -109,43 +45,104 @@ namespace RS.BLL
 
                 var movies = JsonConvert.DeserializeObject<moviesCore.moviesData>(webMethods.GET(URI));
 
-                for (var i = 1; i <= movies.totalPages; i++)
+                for (var i = 1; i <= (movies.totalPages); i++)
                 {
-                    URI = String.Format("http://api.themoviedb.org/3/genre/{0}/movies?api_key={1}&page={2}", item.genreID, apiKey,i);
+                        URI = String.Format("http://api.themoviedb.org/3/genre/{0}/movies?api_key={1}&page={2}", item.genreID, apiKey, i);
 
-                    var movies1 = JsonConvert.DeserializeObject<moviesCore.moviesData>(webMethods.GET(URI));
+                        var movies1 = JsonConvert.DeserializeObject<moviesCore.moviesData>(webMethods.GET(URI));
 
-                    foreach (var movie in movies1.movies)
-                    {
-                        var name = movie.originalTitle;
-                        var nameParts = name.Split(' ');
-                        string nameSearch = "";
-                        foreach (var namepart in nameParts)
+                        foreach (var movie in movies1.movies)
                         {
-                            nameSearch += String.Format("+{0}", namepart);
-                        }
-                        nameSearch = nameSearch.Substring(1, nameSearch.Length - 1);
-                        var releaseDate = movie.date;
-                        string year = "";
-                        if (releaseDate != "") { year = Convert.ToDateTime(releaseDate).Year.ToString(); }
-                        URI = String.Format("http://www.omdbapi.com/?t={0}&y={1}&plot=short&r=json", nameSearch.ToLower(),year);                        
-                        allMovies.Add(movie);
+                            try
+                            {
+                                URI = String.Format("http://api.themoviedb.org/3/movie/{0}?api_key={1}", movie.id, apiKey);
+                                var genresMovie = JsonConvert.DeserializeObject<moviesCore.movieGenres>(webMethods.GET(URI));
+                                var name = movie.title;
+                                var nameParts = name.Split(' ');
+                                string nameSearch = "";
+                                foreach (var namepart in nameParts)
+                                {
+                                    nameSearch += String.Format("+{0}", namepart);
+                                }
+                                nameSearch = nameSearch.Split(':')[0]; //ima problema s pronalazenjem nekih filmova zbog krivih prijevoda iza :
+                                nameSearch = nameSearch.Substring(1, nameSearch.Length - 1);
+                                var releaseDate = movie.date;
+                                string year = "";
+                                if (releaseDate != "") { year = Convert.ToDateTime(releaseDate).Year.ToString(); }
+                                URI = String.Format("http://www.omdbapi.com/?t={0}&y={1}&plot=short&r=json", nameSearch.ToLower(), year);
+                                //allMovies.Add(movie);
 
-                        var OMDBmovie =JsonConvert.DeserializeObject<moviesCore.movieDataOMDB>(webMethods.GET(URI));
-                        var imdbID = OMDBmovie.imdbID;
-                        if (imdbID != null)
-                        {
-                            imdbID = imdbID.Substring(2, imdbID.Length - 2);
-                        }
+                                var OMDBmovie = JsonConvert.DeserializeObject<moviesCore.movieDataOMDB>(webMethods.GET(URI));
+                                //OMDBMovies.Add(OMDBmovie);
+                                var imdbID = OMDBmovie.imdbID;
+                                if (imdbID == null)
+                                {
+                                    totalResults++;
+                                }
+                                if (imdbID != null)
+                                {
+                                    imdbID = imdbID.Substring(2, imdbID.Length - 2);
 
-                        URI = String.Format("http://api.rottentomatoes.com/api/public/v1.0/movie_alias.json?apikey={0}&type=imdb&id={1}", RTapiKey, imdbID);
-                        var RTdata = webMethods.GET(URI);
-                        var RTcore = JsonConvert.DeserializeObject<moviesCore.movieDataRT>(RTdata);
+                                    string facebookLink = scrapper.getFacebookID(imdbID);
+
+                                    URI = String.Format("http://api.rottentomatoes.com/api/public/v1.0/movie_alias.json?apikey={0}&type=imdb&id={1}", RTapiKey, imdbID);
+                                    var RTdata = webMethods.GET(URI);
+                                    var RTcore = JsonConvert.DeserializeObject<moviesCore.movieDataRT>(RTdata);
+                                    //RTMovies.Add(RTcore);
+
+                                    // dodavanje podataka u klasu za filmove
+                                    var singleMovieData = new moviesCore.movieDBData();
+                                    singleMovieData.IMDBID = imdbID;
+                                    if (OMDBmovie.imdbRating != "N/A")
+                                    {
+                                        singleMovieData.imdbScore = Math.Round(Convert.ToDouble(OMDBmovie.imdbRating), 2, MidpointRounding.AwayFromZero);
+                                    }
+                                    singleMovieData.TMDBID = movie.id;
+                                    singleMovieData.title = movie.title;
+                                    if (year != "")
+                                    {
+                                        singleMovieData.year = Convert.ToInt32(year);
+                                    }
+                                    singleMovieData.RTID = RTcore.id.ToString();
+                                    singleMovieData.cast = RTcore.cast;
+                                    singleMovieData.genres = genresMovie;
+                                    singleMovieData.director = OMDBmovie.director;
+                                    singleMovieData.genres = genresMovie;
+                                    singleMovieData.facebookLink = facebookLink;
+                                    movieData.Add(singleMovieData);
+                                }
+                            }
+                            catch
+                            {
+                            }
+                        }
                     }
-                }
             }
 
             totalResults += 0;
+
+            List<moviesCore.movieDBData> movieDataList = new List<moviesCore.movieDBData>();
+            foreach (var item in movieData) movieDataList.Add(item);
+            return movieDataList;
+        }
+
+
+        //sprema filmove, sve odjednom
+        public static void storeMovies(List<moviesCore.movieDBData> movies)
+        {
+            foreach (var item in movies)
+            {
+                RS.DAL.DataStorage.storeMovie(item);
+            }
+        }
+
+        //sprema zanrove u bazu, sve odjednom
+        public static void storeGenres(moviesCore.movieGenres genres)
+        {
+            foreach(var item in genres.genreList)
+            {
+                RS.DAL.DataStorage.storeGenre(item);
+            }
         }
 
         public static object DeserializeFromStream(Stream stream)
@@ -159,28 +156,11 @@ namespace RS.BLL
             }
         }
 
-        public static List<moviesCore.movieData> MappToCore(List<movie> JSONMovies)
+        public static List<moviesCore.movieDBData> MappToCore(List<moviesCore.movieDB> JSONMovies)
         {
-            List<moviesCore.movieData> moviesData = new List<moviesCore.movieData>();
-
-            foreach (var item in JSONMovies)
-            {
-                var movie = new moviesCore.movieData();
-                movie.adult = item.adult;
-                movie.date = item.date;
-                movie.id = item.id;
-                movie.originalTitle = item.originalTitle;
-                movie.path = item.path;
-                movie.popularity = item.popularity;
-                movie.posterPath = item.posterPath;
-                movie.title = item.title;
-                movie.voteAverage = item.voteAverage;
-                movie.voteCount = item.voteCount;
-                moviesData.Add(movie);
-            }
-
+            List<moviesCore.movieDBData> moviesData = new List<moviesCore.movieDBData>();
+            foreach (var item in JSONMovies) moviesData.Add(item.data);
             return moviesData;
         }
-
     }
 }

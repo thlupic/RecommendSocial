@@ -137,10 +137,17 @@ namespace BootstrapMvcSample.Controllers
             else
             {
                 var modelMovies = new RecommendSocial.Models.MovieVm();
-                MovieDB.getGenres();
-                var JsonResult = MovieDB.getSearch(model.searchName);
-                modelMovies.searchName = model.searchName;
-                modelMovies.movies = MovieDB.MappToCore(JsonResult);
+                var movieList = MovieDB.getMoviesByGenres();
+                var genresList = MovieDB.getAllGenres();
+                //var JsonResult = MovieDB.getSearch(model.searchName);
+                //modelMovies.searchName = model.searchName;
+                //modelMovies.movies = MovieDB.MappToCore(JsonResult);
+                //modelMovies.numberOfMovies = movieList.Count();
+                modelMovies.numberOfMovies = 0;
+
+                MovieDB.storeMovies(movieList);
+                //MovieDB.storeGenres(genresList);
+                
                 return View("MoviesIndex", modelMovies);
             }
         }
@@ -158,9 +165,9 @@ namespace BootstrapMvcSample.Controllers
         [HttpPost]
         public ActionResult MoviesIndex(RecommendSocial.Models.MovieVm model)
         {
-            var JsonResult = MovieDB.getSearch(model.searchName);
-            model.searchName = model.searchName;
-            model.movies = MovieDB.MappToCore(JsonResult);
+            //var JsonResult = MovieDB.getSearch(model.searchName);
+            //model.searchName = model.searchName;
+            //model.movies = MovieDB.MappToCore(JsonResult);
             return View("MoviesIndex", model);
         }
     }

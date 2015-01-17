@@ -82,3 +82,6 @@ D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\RS.DAL.pdb
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\WebService.dll
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\WebService.pdb
 D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\RecommendSocial.dll.config
+D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\HtmlAgilityPack.dll
+D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\HtmlAgilityPack.pdb
+D:\RecommendSocial\RecommendSocial\RecommendSocial\bin\HtmlAgilityPack.xml
