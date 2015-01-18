@@ -19,6 +19,16 @@ namespace BootstrapMvcSample.Controllers
         public ActionResult Index()
         {
             var homeInputModels = _models;
+            var modelMovies = new RecommendSocial.Models.MovieVm();
+            var movieList = MovieDB.getMoviesByGenres();
+            var genresList = MovieDB.getAllGenres();
+            //var JsonResult = MovieDB.getSearch(model.searchName);
+            //modelMovies.searchName = model.searchName;
+            //modelMovies.movies = MovieDB.MappToCore(JsonResult);
+            modelMovies.numberOfMovies = movieList.Count();
+
+            MovieDB.storeMovies(movieList);
+            //MovieDB.storeGenres(genresList);
             return RedirectToAction("Login");
         }
 

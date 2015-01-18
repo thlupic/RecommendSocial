@@ -21,6 +21,11 @@ namespace RS.DAL
         //private static MongoDatabase database = server.GetDatabase("local");
         private static MongoDatabase database = server.GetDatabase("recommendsocial");
 
+        /* Ove dvije linije iznad koje su zakomentirane su za lokalnu bazu
+         * Dvije aktivne linije su za online bazu
+         * Ako iz nekog razloga treba prebaciti na lokalnu, zakomentiraju se
+         * sadašnje otkomentirane linije i otkomentiraju ove dvije za local */
+
         #region twitter
         public static TwitterCore.Tokens getTokens(string userName)
         {

@@ -10,6 +10,7 @@ namespace WebService
 {
     public class IMDBScrape
     {
+        //dobiva FB ID
         public string getFacebookID(string IMDBID)
         {
             try
@@ -34,7 +35,14 @@ namespace WebService
 
                 if (FBText.Contains("offsite-facebook"))
                 {
-                    return String.Format("http://www.imdb.com{0}", FBText);
+                    var IMDBFBLink = String.Format("http://www.imdb.com{0}", FBText);
+                    return IMDBFBLink;
+                    //var webmethods = new Methods();
+                    //string FBHTML = webmethods.GET(IMDBFBLink);
+
+                    //var index = FBHTML.IndexOf("pageID");
+
+                    //var stringnew = FBHTML.Substring(index, 50);
                 }
 
                 if (nodes != null)
@@ -46,6 +54,23 @@ namespace WebService
             {
                 var ex = e;
             }
+
+            return null;
+        }
+
+        //scrapea frendove
+        public string getFacebookFriends(string facebookPageID)
+        {
+            facebookPageID = "564976613593712";
+            string URI = String.Format("https://www.facebook.com/browse/friended_fans_of/?page_id={0}", facebookPageID);
+
+            string html = new WebClient().DownloadString(URI);
+
+            HtmlDocument htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(html);
+
+            HtmlNode docNode = htmlDoc.DocumentNode;
+            var node = docNode.SelectSingleNode("//div[id=\"u_0_0\"]");
 
             return null;
         }
