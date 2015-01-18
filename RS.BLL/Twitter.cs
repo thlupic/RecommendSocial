@@ -99,19 +99,5 @@ namespace RS.BLL
             return Mapper.getUserData((int)userID);
         }
 
-        public static int getUserID(string username, string password)
-        {
-            return Mapper.getUserID(username, password);
-        }
-
-        public static long getTwitterID(int userID)
-        {
-            return Mapper.getTwitterID(userID);
-        }
-
-        public static void saveUser(string username, string password, long twitterID)
-        {
-            Mapper.storeUserData(username, password, twitterID);
-        }
     }
 }

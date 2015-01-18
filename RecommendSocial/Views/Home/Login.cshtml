@@ -1,14 +1,6 @@
-﻿@model RecommendSocial.Models.UserVm
-
-@using (Html.BeginForm("Login","Home", FormMethod.Post))
+﻿@using (Html.BeginForm("Login", "Home", FormMethod.Get))
 {
-    @*<div>
-        <div style="text-align:center">Username: @Html.TextBoxFor(x => x.username)</div>
-    </div>
     <div>
-        <div style="text-align:center">Password: @Html.PasswordFor(x => x.password)</div>
-    </div>*@
-    <div>
-        <div style="text-align:center"><button type="submit">Login</button></div>
+        <div style="text-align:center"><button type="submit">Facebook Login</button></div>
     </div>
 }

@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,19 +14,38 @@ namespace RS.Core
         {
             public ObjectId _id { get; set; }
             public int id { get; set; }
-            public string username { get; set; }
-            public string password { get; set; }
+            public string firstName { get; set; }
+            public string lastName { get; set; }
+            public string facebookID { get; set; }
+            public List<LikeData> likes { get; set; }
+            public List<UserCore.userData> friends { get; set; }
 
-            public long twitterID { get; set; }
+            public userData()
+            {
+                likes = new List<LikeData>();
+                friends = new List<UserCore.userData>();
+            }
+        }
+
+
+        public class LikeData
+        {
+
+            [JsonProperty("id")]
+            public string likeID { get; set; }
+
+            [JsonProperty("name")]
+            public string name { get; set; }
         }
 
         public class DBuserData
         {
             public int id { get; set; }
-            public string username { get; set; }
-            public string password { get; set; }
-
-            public long twitterID { get; set; }
+            public string firstName { get; set; }
+            public string lastName { get; set; }
+            public string facebookID { get; set; }
+            public List<LikeData> likes { get; set; }
+            public List<UserCore.userData> friends { get; set; }
         }
     }
 }

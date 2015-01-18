@@ -29,13 +29,6 @@ namespace RS.DAL
             return tokens;
         }
 
-        public static bool checkUserValid(string username, string hashPassword, int userID)
-        {
-            UserCore.userData userData = getUserData(userID);
-            if (userData.username != username || userData.password != hashPassword) return false;
-            return true;
-        }
-
         public static UserCore.userData getUserData(int userID)
         {
             UserCore.userData userData = new UserCore.userData();
@@ -43,30 +36,30 @@ namespace RS.DAL
             var data = DataStorage.getUserData(userID);
 
             userData.id = data.id;
-            userData.username = data.username;
-            userData.password = data.password;
-            userData.twitterID = data.twitterID;
+            userData.firstName = data.firstName;
+            userData.lastName = data.lastName;
+            userData.facebookID = data.facebookID;
 
             return userData;
         }
 
-        public static void storeUserData(string username, string password, long twitterID)
+        public static void storeUserData(int id, string firstName, string lastName, string facebookID, List<UserCore.LikeData> like)
         {
-            UserCore.DBuserData userData = new UserCore.DBuserData();
-            userData.username = username;
-            userData.password = password;
-            userData.twitterID = twitterID;
 
-            userData.id = DataStorage.getLastID();
+            UserCore.DBuserData userData = new UserCore.DBuserData();
+            userData.firstName = firstName;
+            userData.lastName = lastName;
+            userData.facebookID = facebookID;
+            userData.likes = like;
+            userData.id = id;
 
             DataStorage.storeUserData(userData);
         }
 
-        public static int getUserID(string username, string password)
+        public static int getUserID(string facebookID)
         {
-            return DataStorage.getUserID(username, password);
+            return DataStorage.getUserID(facebookID);
         }
-
 
         public static long getTwitterID(int userID)
         {

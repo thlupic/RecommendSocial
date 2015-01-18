@@ -5,73 +5,106 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using RS.Core;
+using RS.DAL;
+
 
 namespace RS.BLL
 {
     public class Facebook
     {
-        //private Uri RedirectUri
-        //{
-            //get
-            //{
-                //var uriBuilder = new UriBuilder(Request.Url);
-                //uriBuilder.Query = null;
-                //uriBuilder.Fragment = null;
-                //uriBuilder.Path = Url.Action("FacebookCallback");
-                //return uriBuilder.Uri;
-            //}
-        //}
 
-        public void FacebookCallback(string code)
+        public static void CreateUser(dynamic me, List<UserCore.userData> users)
         {
-            var fb = new FacebookClient();
-            dynamic result = fb.Post("oauth/access_token", new
-            {
-                client_id = "1538470139728022",
-                client_secret = "958bde759598dbac3db3cf0eda526709",
-                //redirect_uri = RedirectUri.AbsoluteUri,
-                code = code,
-                scope = "user_likes,email"
-            });
-
-            var accessToken = result.access_token;
-
-            //Session["AccessToken"] = accessToken;
-            fb.AccessToken = accessToken;
-
-            // Get the user's information
-
-            dynamic me = fb.Get("me?fields=first_name,last_name,id,likes,email");
-            string firstname = me.first_name;
-            string lastname = me.last_name;
-            string email = me.email;
+            UserCore.userData user = new UserCore.userData();
+            user.firstName = me.first_name;
+            user.lastName = me.last_name;
+            user.facebookID = me.id;
             var likes = me.likes;
-            List<string> movies = new List<string>();
-            foreach (var like in likes.data)
+            var friends = me.friends;
+
+
+            //  napravi listu korisnikovih lajkova
+            try
             {
-                string id = like.id;
-                string name = like.name;
+                foreach (var like in likes.data)
+                {
+                    if (like.category.Equals("Movie"))
+                    {
+                        UserCore.LikeData movieLike = new UserCore.LikeData();
+                        movieLike.likeID = like.id;
+                        movieLike.name = like.name;
+                        user.likes.Add(movieLike);
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.ToString());
+            }
+
+            //napuni listu prijatelja od korisnika
+
+            foreach (var friend in friends.data)
+            {
+
+                if (users != null)
+                {
+                    UserCore.userData userFriend = users.Where(n => n.facebookID == friend.id).FirstOrDefault();
+                    if (userFriend != null)
+                    {
+                        user.friends.Add(userFriend);
+                        userFriend.friends.Add(user);
+                    }
+                }
+
+
             }
 
             // Set the auth cookie
-            System.Web.Security.FormsAuthentication.SetAuthCookie(email, false);
+            System.Web.Security.FormsAuthentication.SetAuthCookie(user.facebookID, false);
 
-            //get facebook movie data
-            dynamic movie = fb.Get("https://graph.facebook.com/?ids=http://www.imdb.com/title/tt0816692/");
-        }
 
-        public void SignIn()
-        {
-            var fb = new FacebookClient();
-            var loginUrl = fb.GetLoginUrl(new
+            if (RS.BLL.Facebook.getUserID(user.facebookID) == 0)
             {
-                client_id = "1538470139728022",
-                client_secret = "958bde759598dbac3db3cf0eda526709",
-                //redirect_uri = RedirectUri.AbsoluteUri,
-                response_type = "code",
-                scope = "email"
-            });
+                RS.BLL.Facebook.saveUser(user.firstName, user.lastName, user.facebookID, user.likes);
+            }
         }
+        public static int getUserID(string facebookID)
+        {
+            return Mapper.getUserID(facebookID);
+        }
+
+
+        public static void saveUser(string firstName, string lastName, string facebookID, List<UserCore.LikeData> likes)
+        {
+            int id = DataStorage.getLastID();
+            Mapper.storeUserData(id, firstName, lastName, facebookID, likes);
+        }
+        public static List<UserCore.userData> getUsers()
+        {
+            List<UserCore.DBuserData> List = DataStorage.getUsers();
+            return mappFromCore(List);
+        }
+
+        public static List<UserCore.userData> mappFromCore(List<UserCore.DBuserData> listCore)
+        {
+            List<UserCore.userData> list = new List<UserCore.userData>();
+            foreach (UserCore.DBuserData userCore in listCore)
+            {
+                UserCore.userData user = new UserCore.userData();
+                user.firstName = userCore.firstName;
+                user.lastName = userCore.lastName;
+                user.facebookID = userCore.facebookID;
+                user.likes = userCore.likes;
+                user.friends = userCore.friends;
+                list.Add(user);
+            }
+            return list;
+        }
+
+
 
     }
 }

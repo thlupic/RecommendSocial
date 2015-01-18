@@ -8,7 +8,7 @@
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{92E5B933-E613-466D-A7D5-DB4F9E957F87}</ProjectGuid>
-    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Models</RootNamespace>
@@ -197,6 +197,7 @@
     <Compile Include="Models\HomeInputModel.cs" />
     <Compile Include="Models\MovieVm.cs" />
     <Compile Include="Models\TwitterVm.cs" />
+    <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Models\UserVm.cs" />
     <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
     <Compile Include="NavigationRoutes\NamedRoute.cs" />
@@ -326,6 +327,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Google\Client.cshtml" />
     <Content Include="Views\Google\SignIn.cshtml" />
+    <Content Include="Views\Home\LogedIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
