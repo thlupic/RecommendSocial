@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using RS.Core;
 using WebService;
 using MongoDB.Bson;
+using RS.DAL;
 
 namespace RS.BLL
 {
@@ -162,6 +163,15 @@ namespace RS.BLL
             List<moviesCore.movieDBData> moviesData = new List<moviesCore.movieDBData>();
             foreach (var item in JSONMovies) moviesData.Add(item.data);
             return moviesData;
+        }
+
+        public static List<moviesCore.movieDB> getAllMovies()
+        {
+            List<moviesCore.movieDB> moviesDB = new List<moviesCore.movieDB>();
+
+            moviesDB = DataStorage.getMovies();
+
+            return moviesDB;
         }
     }
 }

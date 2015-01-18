@@ -84,6 +84,12 @@ namespace BootstrapMvcSample.Controllers
             //pronadi korisnika u bazi ili ako ne postoji spremi novog 
             RS.BLL.Facebook.CreateUser(me, users);
 
+            return RedirectToAction("GetMovies");
+        }
+
+        public ActionResult GetMovies()
+        {
+            var movies = MovieDB.getAllMovies();
             return View("LogedIn");
         }
 

@@ -30,7 +30,6 @@ namespace RS.Core
 
         public class LikeData
         {
-
             [JsonProperty("id")]
             public string likeID { get; set; }
 

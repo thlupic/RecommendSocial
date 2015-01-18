@@ -19,7 +19,7 @@ namespace RS.DAL
         private static MongoClient client = new MongoClient(connectionString);
         private static MongoServer server = client.GetServer();
         //private static MongoDatabase database = server.GetDatabase("local");
-        // private static MongoDatabase database = server.GetDatabase("users");
+        //private static MongoDatabase database = server.GetDatabase("users");
         //spremanje na moju lokalnu bazu-Nikolina
         private static MongoDatabase database = server.GetDatabase("recommendsocial");
 
