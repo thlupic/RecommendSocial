@@ -75,9 +75,27 @@ namespace RS.DAL
 
         public static List<moviesCore.movieDB> getMovies()
         {
-            MongoCollection<moviesCore.movieDB> collection = database.GetCollection<moviesCore.movieDB>("Movies");
-            var movieData = collection.AsQueryable<moviesCore.movieDB>().ToList();
-            return movieData;
+            MongoCollection<moviesCore.movieDBDB> collection = database.GetCollection<moviesCore.movieDBDB>("Movies");
+            var movieData = collection.AsQueryable<moviesCore.movieDBDB>().ToList();
+            var moviesData = new List<moviesCore.movieDB>();
+            foreach (var item in movieData)
+            {
+                var movieDataItem = new moviesCore.movieDB();
+                var data = new moviesCore.movieDBData();
+                data.cast = item.cast;
+                data.director = item.director;
+                data.genres = item.genres;
+                data.IMDBID = item.IMDBID;
+                data.imdbScore = item.imdbScore;
+                data.RTID = item.RTID;
+                data.title = item.title;
+                data.TMDBID = item.TMDBID;
+                data.year = item.year;
+                movieDataItem._id = item._id;
+                movieDataItem.data = data;
+                moviesData.Add(movieDataItem);
+            }
+            return moviesData;
         }
 
         #endregion

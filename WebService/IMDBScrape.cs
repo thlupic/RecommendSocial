@@ -36,13 +36,11 @@ namespace WebService
                 if (FBText.Contains("offsite-facebook"))
                 {
                     var IMDBFBLink = String.Format("http://www.imdb.com{0}", FBText);
+
+                    //var scrapper = new HTMLScrapping.WebSession();
+                    //var FBHTML = scrapper.RequestPage(IMDBFBLink);
+
                     return IMDBFBLink;
-                    //var webmethods = new Methods();
-                    //string FBHTML = webmethods.GET(IMDBFBLink);
-
-                    //var index = FBHTML.IndexOf("pageID");
-
-                    //var stringnew = FBHTML.Substring(index, 50);
                 }
 
                 if (nodes != null)

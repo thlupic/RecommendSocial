@@ -89,7 +89,9 @@ namespace BootstrapMvcSample.Controllers
 
         public ActionResult GetMovies()
         {
-            var movies = MovieDB.getAllMovies();
+            //var movies = MovieDB.getAllMovies();
+            var scrapper = new WebService.IMDBScrape();
+            scrapper.getFacebookID("0816692");
             return View("LogedIn");
         }
 

@@ -16,12 +16,49 @@ namespace RS.Core
         public class movieDB
         {
             public ObjectId _id { get; set; }
+
             public movieDBData data { get; set; }
 
-            public movieDB()
-            {
-                data = new movieDBData();
-            }
+            //[JsonProperty("IMDBID")]
+            //public string IMDBID { get; set; }
+
+            //[JsonProperty("TMDBID")]
+            //public string TMDBID { get; set; }
+
+            //[JsonProperty("RTID")]
+            //public string RTID { get; set; }
+
+            //[JsonProperty("title")]
+            //public string title { get; set; }
+
+            //[JsonProperty("year")]
+            //public int year { get; set; }
+
+            //[JsonProperty("cast")]
+            //public List<actorRT> cast { get; set; }
+
+            //[JsonProperty("genres")]
+            //public movieGenres genres { get; set; }
+
+            //[JsonProperty("imdbScore")]
+            //public double imdbScore { get; set; }
+
+            //[JsonProperty("director")]
+            //public string director { get; set; }
+
+            //[JsonProperty("facebookLink")]
+            //public string facebookLink { get; set; }
+
+            //public movieDB()
+            //{
+            //    cast = new List<actorRT>();
+            //    genres = new movieGenres();
+            //}
+        }
+
+        public class movieDBDB : movieDBData
+        {
+            public ObjectId _id { get; set; }
         }
 
         public class movieDBData
