@@ -109,6 +109,13 @@ namespace RS.DAL
             collection.Insert(genre);
         }
 
+        public static List<moviesCore.movieDB> getMovies()
+        {
+            MongoCollection<moviesCore.movieDB> collection = database.GetCollection<moviesCore.movieDB>("Movies");
+            var movieData = collection.AsQueryable<moviesCore.movieDB>().ToList();
+            return movieData;
+        }
+
         #endregion
     }
 }

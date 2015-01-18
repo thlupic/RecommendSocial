@@ -14,7 +14,7 @@ namespace RS.BLL
     public class MovieDB
     {
         public static string apiKey = "14526d01d666a48a486e579c77ba4d74";
-        public static string RTapiKey = "sn6wtjvtm67kh73j72vvhk57";
+        public static string RTapiKey = "9xxvxysqzw9xqe9nw8p54tdc";
         private static Methods webMethods = new Methods();
         private static Serialization serializer = new Serialization();
         private static IMDBScrape scrapper = new IMDBScrape();
@@ -27,7 +27,7 @@ namespace RS.BLL
             return JsonConvert.DeserializeObject<moviesCore.movieGenres>(webMethods.GET(URI));
         }
 
-        //dohvaca sve filmove razvrstane po zanrovima i pridjeljuje im vrijdnosti iz TMDB, IMDB i RottenTomatoes
+        //dohvaca sve filmove razvrstane po zanrovima i pridjeljuje im vrijdnosti iz TMDB, IMDB i RottenTomatoes i sprema u bazu
         public static List<moviesCore.movieDBData> getMoviesByGenres()
         {
             HashSet<moviesCore.movieDBData> movieData = new HashSet<moviesCore.movieDBData>();
@@ -41,6 +41,7 @@ namespace RS.BLL
 
             foreach (var item in genres.genreList)
             {
+                if (totalResults > 9900) break;
                 URI = String.Format("http://api.themoviedb.org/3/genre/{0}/movies?api_key={1}", item.genreID, apiKey);
 
                 var movies = JsonConvert.DeserializeObject<moviesCore.moviesData>(webMethods.GET(URI));
@@ -55,6 +56,7 @@ namespace RS.BLL
                         {
                             try
                             {
+                                if (totalResults > 9900) break;
                                 URI = String.Format("http://api.themoviedb.org/3/movie/{0}?api_key={1}", movie.id, apiKey);
                                 var genresMovie = JsonConvert.DeserializeObject<moviesCore.movieGenres>(webMethods.GET(URI));
                                 var name = movie.title;
@@ -75,16 +77,12 @@ namespace RS.BLL
                                 var OMDBmovie = JsonConvert.DeserializeObject<moviesCore.movieDataOMDB>(webMethods.GET(URI));
                                 //OMDBMovies.Add(OMDBmovie);
                                 var imdbID = OMDBmovie.imdbID;
-                                if (imdbID == null)
-                                {
-                                    totalResults++;
-                                }
                                 if (imdbID != null)
                                 {
                                     imdbID = imdbID.Substring(2, imdbID.Length - 2);
 
                                     string facebookLink = scrapper.getFacebookID(imdbID);
-
+                                    totalResults++;
                                     URI = String.Format("http://api.rottentomatoes.com/api/public/v1.0/movie_alias.json?apikey={0}&type=imdb&id={1}", RTapiKey, imdbID);
                                     var RTdata = webMethods.GET(URI);
                                     var RTcore = JsonConvert.DeserializeObject<moviesCore.movieDataRT>(RTdata);
@@ -109,11 +107,13 @@ namespace RS.BLL
                                     singleMovieData.director = OMDBmovie.director;
                                     singleMovieData.genres = genresMovie;
                                     singleMovieData.facebookLink = facebookLink;
-                                    movieData.Add(singleMovieData);
+                                    var newValue = movieData.Add(singleMovieData);
+                                    if (newValue) RS.DAL.DataStorage.storeMovie(singleMovieData);
                                 }
                             }
-                            catch
+                            catch (Exception e)
                             {
+                                var ex = e;
                             }
                         }
                     }
@@ -156,6 +156,7 @@ namespace RS.BLL
             }
         }
 
+        // s ovim se pretvara iz database objecta u object nad kojim radimo u aplikaciji
         public static List<moviesCore.movieDBData> MappToCore(List<moviesCore.movieDB> JSONMovies)
         {
             List<moviesCore.movieDBData> moviesData = new List<moviesCore.movieDBData>();

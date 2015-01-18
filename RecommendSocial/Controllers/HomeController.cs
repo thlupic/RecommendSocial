@@ -20,14 +20,13 @@ namespace BootstrapMvcSample.Controllers
         {
             var homeInputModels = _models;
             var modelMovies = new RecommendSocial.Models.MovieVm();
-            var movieList = MovieDB.getMoviesByGenres();
-            var genresList = MovieDB.getAllGenres();
+            //var genresList = MovieDB.getAllGenres();
             //var JsonResult = MovieDB.getSearch(model.searchName);
             //modelMovies.searchName = model.searchName;
             //modelMovies.movies = MovieDB.MappToCore(JsonResult);
-            modelMovies.numberOfMovies = movieList.Count();
+            modelMovies.numberOfMovies = 0;
 
-            MovieDB.storeMovies(movieList);
+            //MovieDB.storeMovies(movieList);
             //MovieDB.storeGenres(genresList);
             return RedirectToAction("Login");
         }
@@ -40,20 +39,21 @@ namespace BootstrapMvcSample.Controllers
         [HttpPost]
         public ActionResult Login(RecommendSocial.Models.UserVm model)
         {
-            int userID = Twitter.getUserID(model.username, model.password);
-            Session["username"] = model.username;
-            Session["password"] = model.password;
-            if (userID != 0)
-            {
-                Session["UserID"] = userID;
-                long twitterID = Twitter.getTwitterID(userID);
-                Session["TwitterID"] = twitterID;
-            }
-            else
-            {
-                Session["username"] = model.username;
-                Session["password"] = model.password;
-            }
+            var movieList = MovieDB.getMoviesByGenres();
+            //int userID = Twitter.getUserID(model.username, model.password);
+            //Session["username"] = model.username;
+            //Session["password"] = model.password;
+            //if (userID != 0)
+            //{
+            //    Session["UserID"] = userID;
+            //    long twitterID = Twitter.getTwitterID(userID);
+            //    Session["TwitterID"] = twitterID;
+            //}
+            //else
+            //{
+            //    Session["username"] = model.username;
+            //    Session["password"] = model.password;
+            //}
             return RedirectToAction("IndexTwitter");
         }
 
