@@ -61,6 +61,7 @@ namespace FacebookGetInfo
 
         static void Main(string[] args)
         {
+            /*
             MongoServer mongoServer = MongoServer.Create();
             var db = mongoServer.GetDatabase("mydb");
             string AccessToken = "CAACEdEose0cBAMOfMkvWdmDYU7N4oDcZATEbqdRkFfQWYcMKEZCKOWVZBlc2foDbviybHgTX7cgAwjHVnHlX0uI5forZCe0sn5GY51z6QNMRkyRPAlXY7ZCUdythjNl7ufZBc9oCcVUtgxiDJ0B09q6ls8eHWO1OqxYrYW6GkRpvcfeFeNAs6is61mP8mJAutZBC9BlRBXMVIPpGK0I5fPcs71YLbzVew0ZD";
@@ -83,7 +84,8 @@ namespace FacebookGetInfo
                 }
             }
 
-            mongoServer.Disconnect();
+            mongoServer.Disconnect();*/
+            RS.BLL.RecommendMovies.recommend(10);
         }
     }
 

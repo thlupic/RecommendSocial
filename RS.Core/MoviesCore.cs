@@ -5,11 +5,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace RS.Core
 {
+
     public class moviesCore    
     {
+        [BsonIgnoreExtraElements]
         public class movieDB
         {
             public ObjectId _id { get; set; }
@@ -23,15 +26,35 @@ namespace RS.Core
 
         public class movieDBData
         {
+            //public ObjectId _id { get; set; }
+            [JsonProperty("IMDBID")]
             public string IMDBID { get; set; }
+
+            [JsonProperty("TMDBID")]
             public string TMDBID { get; set; }
+
+            [JsonProperty("RTID")]
             public string RTID { get; set; }
+
+            [JsonProperty("title")]
             public string title { get; set; }
+
+            [JsonProperty("year")]
             public int year { get; set; }
+
+            [JsonProperty("cast")]
             public List<actorRT> cast { get; set; }
+
+            [JsonProperty("genres")]
             public movieGenres genres { get; set; }
+
+            [JsonProperty("imdbScore")]
             public double imdbScore { get; set; }
+
+            [JsonProperty("director")]
             public string director { get; set; }
+
+            [JsonProperty("facebookLink")]
             public string facebookLink { get; set; }
 
             public movieDBData()

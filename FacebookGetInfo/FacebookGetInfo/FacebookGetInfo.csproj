@@ -89,6 +89,16 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\RS.BLL\RS.BLL.csproj">
+      <Project>{c5127dc1-f262-4aa8-9148-e8f73fb66300}</Project>
+      <Name>RS.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RS.Core\RS.Core.csproj">
+      <Project>{a63147a5-7f73-4866-9696-3d99b3ca7654}</Project>
+      <Name>RS.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
