@@ -17,6 +17,7 @@ namespace RS.BLL
         public static void CreateUser(dynamic me, List<UserCore.userData> users)
         {
             UserCore.userData user = new UserCore.userData();
+            //user.friends = new List<UserCore.userData>();
             user.firstName = me.first_name;
             user.lastName = me.last_name;
             user.facebookID = me.id;
@@ -51,11 +52,14 @@ namespace RS.BLL
 
                 if (users != null)
                 {
-                    UserCore.userData userFriend = users.Where(n => n.facebookID == friend.id).FirstOrDefault();
+
+                    UserCore.userData userFriend = new UserCore.userData();
+                  //  userFriend.friends = new List<UserCore.userData>();
+                    userFriend = users.Where(n => n.facebookID == friend.id).FirstOrDefault();
                     if (userFriend != null)
                     {
                         user.friends.Add(userFriend);
-                        userFriend.friends.Add(user);
+                       // userFriend.friends.Add(user);
                     }
                 }
 
@@ -70,6 +74,9 @@ namespace RS.BLL
             {
                 RS.BLL.Facebook.saveUser(user.firstName, user.lastName, user.facebookID, user.likes);
             }
+
+
+            RecommendMovies.recommend(user);
         }
         public static int getUserID(string facebookID)
         {
@@ -80,7 +87,7 @@ namespace RS.BLL
         public static void saveUser(string firstName, string lastName, string facebookID, List<UserCore.LikeData> likes)
         {
             int id = DataStorage.getLastID();
-            Mapper.storeUserData(id, firstName, lastName, facebookID, likes);
+            Mapper.storeUserData(id +1, firstName, lastName, facebookID, likes);
         }
         public static List<UserCore.userData> getUsers()
         {

@@ -14,7 +14,7 @@ namespace RS.BLL
     public class RecommendMovies
     {
         //numOfMovies označava koliko filmova funkcija vraća
-        public static List<moviesCore.movieDBData> recommend(int numOfMovies=10)
+        public static List<moviesCore.movieDBData> recommend(UserCore.userData user,int numOfMovies=10)
         {
             BsonClassMap.RegisterClassMap<moviesCore.movieDB>();
 
@@ -47,8 +47,8 @@ namespace RS.BLL
             MongoCollection<moviesCore.movieDBDB> moviesCollection = database.GetCollection<moviesCore.movieDBDB>("Movies");
             UserCore.DBuserData profile = DataStorage.getUserData(1);  //dohvati korisnika s id-jem 1
             
-            Console.WriteLine("Name: {0}", profile.firstName);
-            Console.WriteLine("Number of likes: {0}", profile.likes.Count);
+            //Console.WriteLine("Name: {0}", profile.firstName);
+            //Console.WriteLine("Number of likes: {0}", profile.likes.Count);
 
             var qResult = (from m in moviesCollection.AsQueryable<moviesCore.movieDBDB>() select m).Count();
             Console.WriteLine("Movies count={0}", qResult);
