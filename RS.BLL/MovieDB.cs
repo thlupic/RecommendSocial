@@ -170,7 +170,7 @@ namespace RS.BLL
         public static List<moviesCore.movieDBData> MappToCore(List<moviesCore.movieDB> JSONMovies)
         {
             List<moviesCore.movieDBData> moviesData = new List<moviesCore.movieDBData>();
-            //foreach (var item in JSONMovies) moviesData.Add
+            foreach (var item in JSONMovies) moviesData.Add(item.data);
             return moviesData;
         }
 
