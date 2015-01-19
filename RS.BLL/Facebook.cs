@@ -72,7 +72,7 @@ namespace RS.BLL
                         {                           
                             userToFriend.friends = new List<UserCore.FriendData>();
                         }
-                        if (userToFriend.friends.Where(n => n.friendID == user.facebookID ).FirstOrDefault() != null)
+                        if (userToFriend.friends.Where(n => n.friendID == user.facebookID ).FirstOrDefault() == null)
                         {
                             userToFriend.friends.Add(userFriendNew);
                             // update postojeceg korisnika -- dodaj mu novog prijatelja
