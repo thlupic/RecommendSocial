@@ -41,6 +41,11 @@
         </div>
          @Scripts.Render("~/js")
          @RenderSection("Scripts", required: false)
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#moviesTable').DataTable();
+            });
+</script>
     </body>
 </html>
 
