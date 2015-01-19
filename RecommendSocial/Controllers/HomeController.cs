@@ -29,7 +29,7 @@ namespace BootstrapMvcSample.Controllers
 
             //MovieDB.storeMovies(movieList);
             //MovieDB.storeGenres(genresList);
-            return RedirectToAction("Login");
+            return View("Login");
         }
 
         //  pocetna funkcija koja logira usera pomocu facebook accounta
