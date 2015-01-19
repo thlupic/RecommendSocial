@@ -84,15 +84,33 @@ namespace BootstrapMvcSample.Controllers
             //pronadi korisnika u bazi ili ako ne postoji spremi novog 
             RS.BLL.Facebook.CreateUser(me, users);
 
-            return RedirectToAction("GetMovies");
+            return RedirectToAction("LogedIn");
         }
 
-        public ActionResult GetMovies()
+        public ActionResult LogedIn()
         {
-            //var movies = MovieDB.getAllMovies();
-            var scrapper = new WebService.IMDBScrape();
-            scrapper.getFacebookID("0816692");
-            return View("LogedIn");
+            var model = new RecommendSocial.Models.MovieVm();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult LogedIn(string MoviesFetch)
+        {
+            var model = new RecommendSocial.Models.MovieVm();
+            if (MoviesFetch == "fetch")
+            {
+                var movies = MovieDB.getMoviesByGenres();
+                model.movies = movies;
+                model.numberOfMovies = movies.Count();
+            }
+            else
+            {
+                var movies = MovieDB.getAllMovies();
+                var moviesView = MovieDB.MappToCore(movies);
+                model.numberOfMovies = moviesView.Count();
+                model.movies = moviesView;
+            }
+            return View(model);
         }
 
        // [HttpPost]
