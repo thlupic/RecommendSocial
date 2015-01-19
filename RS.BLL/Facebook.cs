@@ -126,7 +126,7 @@ namespace RS.BLL
                     {
                         b = 1;
                     }               
-                }
+                }              
 
                 foreach (var friendCompare in user.friends)
                 {
