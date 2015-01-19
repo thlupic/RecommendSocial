@@ -7,17 +7,19 @@ using System.Text;
 using System.Threading.Tasks;
 using RS.Core;
 using RS.DAL;
+using System.Collections;
 
 
 namespace RS.BLL
 {
     public class Facebook
     {
+      
 
         public static void CreateUser(dynamic me, List<UserCore.userData> users)
         {
+
             UserCore.userData user = new UserCore.userData();
-            //user.friends = new List<UserCore.userData>();
             user.firstName = me.first_name;
             user.lastName = me.last_name;
             user.facebookID = me.id;
@@ -47,36 +49,107 @@ namespace RS.BLL
 
             //napuni listu prijatelja od korisnika
 
+            // ako imas u bazi tog prijatelja onda i njemu nadopuni listu prijatelja s novim korisnikom
+
             foreach (var friend in friends.data)
             {
 
                 if (users != null)
                 {
 
-                    UserCore.userData userFriend = new UserCore.userData();
-                  //  userFriend.friends = new List<UserCore.userData>();
-                    userFriend = users.Where(n => n.facebookID == friend.id).FirstOrDefault();
-                    if (userFriend != null)
+                    UserCore.FriendData userFriend = new UserCore.FriendData();
+                
+                    UserCore.userData userToFriend = users.Where(n => n.facebookID == friend.id).FirstOrDefault();
+                    if (userToFriend != null)
                     {
+                        userFriend.friendID = userToFriend.facebookID;
+                        userFriend.likes = userToFriend.likes;
                         user.friends.Add(userFriend);
-                       // userFriend.friends.Add(user);
+                        UserCore.FriendData userFriendNew = new UserCore.FriendData();
+                        userFriendNew.friendID = user.facebookID;
+                        userFriendNew.likes = user.likes;
+                        if (userToFriend.friends == null)
+                        {                           
+                            userToFriend.friends = new List<UserCore.FriendData>();
+                        }
+                        userToFriend.friends.Add(userFriendNew);
+
+                        // update postojeceg korisnika -- dodaj mu novo prijatelja
+                        Mapper.updateUsers(userToFriend);
                     }
                 }
 
 
             }
-
             // Set the auth cookie
             System.Web.Security.FormsAuthentication.SetAuthCookie(user.facebookID, false);
 
-
-            if (RS.BLL.Facebook.getUserID(user.facebookID) == 0)
+            user.id = RS.BLL.Facebook.getUserID(user.facebookID);
+            if (user.id == 0)
             {
-                RS.BLL.Facebook.saveUser(user.firstName, user.lastName, user.facebookID, user.likes);
+                RS.BLL.Facebook.saveUser(user.firstName, user.lastName, user.facebookID, user.likes, user.friends);
+                users.Add(user);
             }
+            else
+            {
+                
+                UserCore.userData userToUpdate = RS.BLL.Facebook.getUser(user.id);
+
+                var b = 0;
+                foreach (var likeCompare in userToUpdate.likes)
+                {
+                    if(!user.likes.Any(p => p.name == likeCompare.name))
+                    {
+                       b = 1;
+                    }
+                    if (!user.likes.Any(p => p.likeID == likeCompare.likeID))
+                    {
+                       b = 1;
+                    }
+                }
+
+                foreach (var likeCompare in user.likes)
+                {
+                    if (!userToUpdate.likes.Any(p => p.name == likeCompare.name))
+                    {
+                        b = 1;
+                    }
+                    if (!userToUpdate.likes.Any(p => p.likeID == likeCompare.likeID))
+                    {
+                        b = 1;
+                    }
+                }
+
+                foreach (var friendCompare in userToUpdate.friends)
+                {
+                    if (!user.friends.Any(p => p.friendID == friendCompare.friendID))
+                    {
+                        b = 1;
+                    }               
+                }
+
+                foreach (var friendCompare in user.friends)
+                {
+                    if (!userToUpdate.friends.Any(p => p.friendID == friendCompare.friendID))
+                    {
+                        b = 1;
+                    }
+                }
+
+                if (userToUpdate.lastName != user.lastName || userToUpdate.firstName != user.firstName || b==1)
+                {
+                    Mapper.updateUsers(user);
+                }
+
+            } 
+
+            //RecommendMovies.recommend(user);
+        }
 
 
-            RecommendMovies.recommend(user);
+        private static UserCore.userData getUser(int id)
+        {
+            return Mapper.getUserData(id);
         }
         public static int getUserID(string facebookID)
         {
@@ -84,10 +157,10 @@ namespace RS.BLL
         }
 
 
-        public static void saveUser(string firstName, string lastName, string facebookID, List<UserCore.LikeData> likes)
+        public static void saveUser(string firstName, string lastName, string facebookID, List<UserCore.LikeData> likes, List<UserCore.FriendData> friends)
         {
             int id = DataStorage.getLastID();
-            Mapper.storeUserData(id +1, firstName, lastName, facebookID, likes);
+            Mapper.storeUserData(id +1, firstName, lastName, facebookID, likes,friends);
         }
         public static List<UserCore.userData> getUsers()
         {
@@ -101,6 +174,7 @@ namespace RS.BLL
             foreach (UserCore.DBuserData userCore in listCore)
             {
                 UserCore.userData user = new UserCore.userData();
+                user.id = userCore.id;
                 user.firstName = userCore.firstName;
                 user.lastName = userCore.lastName;
                 user.facebookID = userCore.facebookID;

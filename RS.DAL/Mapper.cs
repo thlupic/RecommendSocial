@@ -39,11 +39,13 @@ namespace RS.DAL
             userData.firstName = data.firstName;
             userData.lastName = data.lastName;
             userData.facebookID = data.facebookID;
+            userData.likes = data.likes;
+            userData.friends = data.friends;
 
             return userData;
         }
 
-        public static void storeUserData(int id, string firstName, string lastName, string facebookID, List<UserCore.LikeData> like)
+        public static void storeUserData(int id, string firstName, string lastName, string facebookID, List<UserCore.LikeData> like, List<UserCore.FriendData> friends)
         {
 
             UserCore.DBuserData userData = new UserCore.DBuserData();
@@ -51,6 +53,7 @@ namespace RS.DAL
             userData.lastName = lastName;
             userData.facebookID = facebookID;
             userData.likes = like;
+            userData.friends = friends;
             userData.id = id;
 
             DataStorage.storeUserData(userData);
@@ -64,6 +67,17 @@ namespace RS.DAL
         public static long getTwitterID(int userID)
         {
             return DataStorage.getTwitterID(userID);
+        }
+
+        public static void updateFriends(UserCore.userData userToFriend)
+        {
+            DataStorage.UpdateFriends(userToFriend);
+        }
+
+
+        public static void updateUsers( UserCore.userData noviUser)
+        {
+               DataStorage.UpdateUser(noviUser);        
         }
     }
 }

@@ -9,6 +9,7 @@ using MongoDB.Driver.Builders;
 using MongoDB.Driver.GridFS;
 using MongoDB.Driver.Linq;
 using RS.Core;
+using System.Collections;
 
 namespace RS.DAL
 {
@@ -157,5 +158,40 @@ namespace RS.DAL
             else return 0;
         }
         #endregion
+
+        internal static void UpdateFriends(UserCore.userData userToFriend)
+        {
+            MongoCollection<UserCore.DBuserData> collection = database.GetCollection<UserCore.DBuserData>("LoginUserData");
+            collection.Update(Query.EQ("_id", userToFriend._id), Update.Set("friends", userToFriend.friends.ToString()));        
+        }
+
+        internal static void UpdateFirstName(UserCore.userData noviUser)
+        {
+            MongoCollection<UserCore.DBuserData> collection = database.GetCollection<UserCore.DBuserData>("LoginUserData");
+            collection.Update(Query.EQ("_id", noviUser._id), Update.Set("firstName", noviUser.firstName));  
+        }
+
+        internal static void UpdateLastName(UserCore.userData noviUser)
+        {
+            MongoCollection<UserCore.DBuserData> collection = database.GetCollection<UserCore.DBuserData>("LoginUserData");
+            collection.Update(Query.EQ("_id", noviUser._id), Update.Set("lastName", noviUser.lastName));  
+        }
+
+
+
+        internal static void UpdateUser(UserCore.userData noviUser)
+        {
+            MongoCollection<UserCore.DBuserData> collection = database.GetCollection<UserCore.DBuserData>("LoginUserData");
+        
+            UserCore.DBuserData nu = new UserCore.DBuserData();
+            nu.id = noviUser.id;
+            nu.facebookID = noviUser.facebookID;
+            nu.firstName = noviUser.firstName;
+            nu.lastName = noviUser.lastName;
+            nu.likes = noviUser.likes;
+            nu.friends = noviUser.friends;
+
+            collection.Update(Query.EQ("_id", noviUser.id), Update.Replace(nu), UpdateFlags.Upsert);      
+        }
     }
 }
