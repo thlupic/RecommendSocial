@@ -45,7 +45,7 @@ namespace RS.BLL
 
             
             MongoCollection<moviesCore.movieDBDB> moviesCollection = database.GetCollection<moviesCore.movieDBDB>("Movies");
-            UserCore.DBuserData profile = DataStorage.getUserData(1);  //dohvati korisnika s id-jem 1
+            //UserCore.DBuserData profile = DataStorage.getUserData(1);  //dohvati korisnika s id-jem 1
             
             //Console.WriteLine("Name: {0}", profile.firstName);
             //Console.WriteLine("Number of likes: {0}", profile.likes.Count);
@@ -71,7 +71,7 @@ namespace RS.BLL
 
 
             //za svaki lajk izdvoji glumce, žanrove i redatelje
-            foreach (UserCore.LikeData like in profile.likes)
+            foreach (UserCore.LikeData like in user.likes)
             {
                 //nađi film u bazi
                 var queryResult = (from m in moviesCollection.AsQueryable<moviesCore.movieDBDB>() where m.title.Equals(like.name) select m);
