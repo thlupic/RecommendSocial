@@ -227,7 +227,7 @@ namespace RS.Core
             [JsonProperty("id")]
             public int id { get; set; }
 
-            [JsonProperty("abriged_cast")]
+            [JsonProperty("abridged_cast")]
             public List<actorRT> cast { get; set; }
 
             public movieDataRT()

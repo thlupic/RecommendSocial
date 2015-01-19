@@ -57,7 +57,6 @@ namespace RS.BLL
                         {
                             try
                             {
-                                if (totalResults > 9900) break;
                                 URI = String.Format("http://api.themoviedb.org/3/movie/{0}?api_key={1}", movie.id, apiKey);
                                 var genresMovie = JsonConvert.DeserializeObject<moviesCore.movieGenres>(webMethods.GET(URI));
                                 var name = movie.title;
@@ -83,8 +82,15 @@ namespace RS.BLL
                                     imdbID = imdbID.Substring(2, imdbID.Length - 2);
 
                                     string facebookLink = scrapper.getFacebookID(imdbID);
-                                    totalResults++;
-                                    URI = String.Format("http://api.rottentomatoes.com/api/public/v1.0/movie_alias.json?apikey={0}&type=imdb&id={1}", RTapiKey, imdbID);
+                                    try
+                                    {
+                                        URI = String.Format("http://api.rottentomatoes.com/api/public/v1.0/movie_alias.json?apikey={0}&type=imdb&id={1}", RTapiKey, imdbID);
+                                    }
+                                    catch
+                                    {
+                                        if (RTapiKey == "9xxvxysqzw9xqe9nw8p54tdc") RTapiKey = "sn6wtjvtm67kh73j72vvhk57"; else RTapiKey = "9xxvxysqzw9xqe9nw8p54tdc";
+                                        URI = String.Format("http://api.rottentomatoes.com/api/public/v1.0/movie_alias.json?apikey={0}&type=imdb&id={1}", RTapiKey, imdbID);
+                                    }
                                     var RTdata = webMethods.GET(URI);
                                     var RTcore = JsonConvert.DeserializeObject<moviesCore.movieDataRT>(RTdata);
                                     //RTMovies.Add(RTcore);
@@ -94,7 +100,7 @@ namespace RS.BLL
                                     singleMovieData.IMDBID = imdbID;
                                     if (OMDBmovie.imdbRating != "N/A")
                                     {
-                                        singleMovieData.imdbScore = Math.Round(Convert.ToDouble(OMDBmovie.imdbRating), 2, MidpointRounding.AwayFromZero);
+                                        singleMovieData.imdbScore = Math.Round(Convert.ToDouble(OMDBmovie.imdbRating)/10, 2, MidpointRounding.AwayFromZero);
                                     }
                                     singleMovieData.TMDBID = movie.id;
                                     singleMovieData.title = movie.title;
@@ -108,8 +114,11 @@ namespace RS.BLL
                                     singleMovieData.director = OMDBmovie.director;
                                     singleMovieData.genres = genresMovie;
                                     singleMovieData.facebookLink = facebookLink;
-                                    var newValue = movieData.Add(singleMovieData);
-                                    if (newValue) RS.DAL.DataStorage.storeMovie(singleMovieData);
+                                    if (singleMovieData.cast.Count > 0)
+                                    {
+                                        var newValue = movieData.Add(singleMovieData);
+                                        if (newValue) RS.DAL.DataStorage.storeMovie(singleMovieData);
+                                    }
                                 }
                             }
                             catch (Exception e)
