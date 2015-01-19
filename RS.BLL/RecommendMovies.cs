@@ -14,7 +14,7 @@ namespace RS.BLL
     public class RecommendMovies
     {
         //numOfMovies označava koliko filmova funkcija vraća
-        public static List<moviesCore.movieDBData> recommend(UserCore.userData user,int numOfMovies=10)
+        public static List<moviesCore.movieDBData> recommend(UserCore.userData user)
         {
             BsonClassMap.RegisterClassMap<moviesCore.movieDB>();
 
@@ -217,16 +217,18 @@ namespace RS.BLL
 
             //poredaj filmove po rangu
             rankedMovies = rankedMovies.OrderByDescending(o => o.rank).ToList();
+            //foreach (var v in rankedMovies)
+            //    Console.WriteLine("{0}\t{1}", v.movie.title, v.rank);
 
             //lista koja sadrži filmove koji će biti prikazani korisniku
             List<moviesCore.movieDBData> returnMovies = new List<moviesCore.movieDBData>();
 
             //ako je rezultat vratio manje filmova od zadanog
-            if (rankedMovies.Count < numOfMovies)
-                numOfMovies = rankedMovies.Count;
+            //if (rankedMovies.Count < numOfMovies)
+            //    numOfMovies = rankedMovies.Count;
  
 
-            for (int i = 0; i < numOfMovies; i++)
+            for (int i = 0; i < rankedMovies.Count(); i++)
             {
                 returnMovies.Add(rankedMovies.ElementAt(i).movie);
                 Console.WriteLine("{0}\t{1}", rankedMovies.ElementAt(i).movie.title, rankedMovies.ElementAt(i).rank);
