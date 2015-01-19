@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///C:/PROGRAM FILES (X86)/MICROSOFT VISUAL STUDIO 11.0/COMMON7/IDE/EXTENSIONS/MICROSOFT/ARCHITECTURE TOOLS/EXTENSIBILITY/Logging/ReverseEngineeringLog.xslt"?>
+<Log xmlns="http://schemas.microsoft.com/VisualStudio/2010/CodeGen.RE.Log" Label="Code Generation/Text Transformation Log">
+  <MessageClass Name="Message" Label="Message" Option="Show informational messages" />
+  <MessageClass Name="Warning" Label="Warning" Option="Show warnings" />
+  <MessageClass Name="Error" Label="Error" Option="Show errors" />
+  <MessageClass Name="Property" Label="Property" Option="Show metadata" />
+  <MessageClass Name="Diagnostic" Label="Message" Option="Show diagnostic messages" />
+  <Message Timestamp="2015-01-19T23:31:39" Importance="High" Text="Reverse Engineering Started." />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: '6711b08c-3f68-451d-b29f-373ef547c13d' -  (ClassifierTemplateParameter)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Integer' -  (PrimitiveType)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::MongoDB' -  (Package)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::MongoDB::Bson' -  (Package)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::MongoDB::Bson::ObjectId' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS' -  (Package)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core' -  (Package)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::actorRT' -  (Class)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::actorRT::actorRT' -  (Operation)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::actorRT::characters' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::actorRT::name' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::castRT' -  (Class)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::castRT::cast' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::castRT::castRT' -  (Operation)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::DBuserData' -  (Class)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::DBuserData::DBuserData' -  (Operation)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::DBuserData::facebookID' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::DBuserData::firstName' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::DBuserData::friends' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::DBuserData::id' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::DBuserData::lastName' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::DBuserData::likes' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::FriendData' -  (Class)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::FriendData::FriendData' -  (Operation)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::FriendData::friendID' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::FriendData::likes' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::LikeData' -  (Class)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::LikeData::LikeData' -  (Operation)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::LikeData::likeID' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::LikeData::name' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB' -  (Class)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::actors' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::awards' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::country' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::director' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::genre' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::imdbID' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::imdbRating' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::imdbVotes' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::language' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::metascore' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::movieDataOMDB' -  (Operation)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::plot' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::poster' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::rated' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::released' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::response' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::runtime' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::title' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::type' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::writer' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataOMDB::year' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataRT' -  (Class)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataRT::cast' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataRT::id' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataRT::movieDataRT' -  (Operation)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataTMDB' -  (Class)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataTMDB::date' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataTMDB::genres' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataTMDB::id' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataTMDB::movieDataTMDB' -  (Operation)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataTMDB::originalTitle' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDataTMDB::title' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDB' -  (Class)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDB::_id' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDB::data' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDB::movieDB' -  (Operation)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDBData' -  (Class)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDBData::cast' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDBData::director' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDBData::facebookLink' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDBData::genres' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDBData::IMDBID' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDBData::imdbScore' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDBData::movieDBData' -  (Operation)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDBData::RTID' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDBData::title' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDBData::TMDBID' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDBData::year' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDBDB' -  (Class)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDBDB::_id' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieDBDB::movieDBDB' -  (Operation)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieGenres' -  (Class)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieGenres::genreList' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::movieGenres::movieGenres' -  (Operation)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::moviesCore' -  (Class)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::moviesCore::moviesCore' -  (Operation)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::moviesData' -  (Class)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::moviesData::movies' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::moviesData::moviesData' -  (Operation)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::moviesData::Page' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::moviesData::totalPages' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::moviesData::totalResults' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::moviesGenreTMDB' -  (Class)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::moviesGenreTMDB::genreID' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::moviesGenreTMDB::moviesGenreTMDB' -  (Operation)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::moviesGenreTMDB::name' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::UserCore' -  (Class)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::UserCore::UserCore' -  (Operation)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::userData' -  (Class)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::userData::_id' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::userData::facebookID' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::userData::firstName' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::userData::friends' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::userData::id' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::userData::lastName' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::userData::likes' -  (Property)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::RS::Core::userData::userData' -  (Operation)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System' -  (Package)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Collections' -  (Package)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Collections::Generic' -  (Package)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Collections::Generic::List' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Collections::Generic::List&lt;moviesCore‎‎.actorRT‎&gt;' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Collections::Generic::List&lt;moviesCore‎‎.movieDataTMDB‎&gt;' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Collections::Generic::List&lt;moviesCore‎‎.moviesGenreTMDB‎&gt;' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Collections::Generic::List&lt;String‎&gt;' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Collections::Generic::List&lt;UserCore‎‎.FriendData‎&gt;' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Collections::Generic::List&lt;UserCore‎‎.LikeData‎&gt;' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Double' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'String' -  (PrimitiveType)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::RS::Core::movieDataRT to ModelingProject1::System::Collections::Generic::List&lt;moviesCore‎‎.actorRT‎&gt; (Association)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::RS::Core::movieDataTMDB to ModelingProject1::System::Collections::Generic::List&lt;moviesCore‎‎.moviesGenreTMDB‎&gt; (Association)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::RS::Core::movieDB to ModelingProject1::MongoDB::Bson::ObjectId (Association)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::RS::Core::movieDB to ModelingProject1::RS::Core::movieDBData (Association)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::RS::Core::movieDBData to ModelingProject1::System::Collections::Generic::List&lt;moviesCore‎‎.actorRT‎&gt; (Association)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::RS::Core::movieDBData to ModelingProject1::RS::Core::movieGenres (Association)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::RS::Core::movieDBData to ModelingProject1::System::Double (Association)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::RS::Core::movieDBDB to ModelingProject1::MongoDB::Bson::ObjectId (Association)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::RS::Core::movieDBDB to ModelingProject1::RS::Core::movieDBData (Generalization)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::RS::Core::movieGenres to ModelingProject1::System::Collections::Generic::List&lt;moviesCore‎‎.moviesGenreTMDB‎&gt; (Association)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::RS::Core::moviesData to ModelingProject1::System::Collections::Generic::List&lt;moviesCore‎‎.movieDataTMDB‎&gt; (Association)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::RS::Core::DBuserData to ModelingProject1::System::Collections::Generic::List&lt;UserCore‎‎.FriendData‎&gt; (Association)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::RS::Core::DBuserData to ModelingProject1::System::Collections::Generic::List&lt;UserCore‎‎.LikeData‎&gt; (Association)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::RS::Core::FriendData to ModelingProject1::System::Collections::Generic::List&lt;UserCore‎‎.LikeData‎&gt; (Association)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::RS::Core::userData to ModelingProject1::MongoDB::Bson::ObjectId (Association)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::RS::Core::userData to ModelingProject1::System::Collections::Generic::List&lt;UserCore‎‎.FriendData‎&gt; (Association)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::RS::Core::userData to ModelingProject1::System::Collections::Generic::List&lt;UserCore‎‎.LikeData‎&gt; (Association)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::RS::Core::actorRT to ModelingProject1::System::Collections::Generic::List&lt;String‎&gt; (Association)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::RS::Core::castRT to ModelingProject1::System::Collections::Generic::List&lt;moviesCore‎‎.actorRT‎&gt; (Association)" />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="High" Text="(17) type(s) fully reverse engineered." />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="High" Text="(9) type(s) partially reverse engineered.  These types were not included in the original selection so their full definitions are not reverse engineered.  Instead, this shallow operation has simply ensured these types exist in the UML model because they are needed in order to fully describe other elements." />
+  <Message Timestamp="2015-01-19T23:31:45" Importance="High" Text="The reverse engineering operation completed with (0) error(s), and (0) warning(s)." />
+</Log>

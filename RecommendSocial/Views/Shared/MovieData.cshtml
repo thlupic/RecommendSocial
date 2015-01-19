@@ -1,4 +1,4 @@
-﻿<h2>Rezultati pretrage za upit "@Model.searchName"</h2>
+﻿@model RecommendSocial.Models.MovieVm
 
 <div class="table-responsive">
 <table class="table">
@@ -12,44 +12,26 @@
             Title
         </th>
         <th>
-            Original title
-        </th>
-        <th>
-            Release date
-        </th>
-        <th>
-            Popularity
-        </th>
-        <th>
-            Average vote (# of votes)
+            IMDB Score
         </th>
         </tr>
     </thead>
     <tbody>
-@*@foreach (var item in Model.movies)
+@foreach (var item in Model.movies)
 {
     <tr>
         <td>
             @i
         </td>
         <td>
-            @item.title (@Convert.ToDateTime(item.date).Year)
+            @item.title (@item.year)
         </td>
         <td>
-            @item.originalTitle
-        </td>
-        <td>
-            @item.date
-        </td>
-        <td>
-            @Math.Round(Convert.ToDouble(item.popularity),2,MidpointRounding.AwayFromZero)
-        </td>
-        <td>
-            @item.voteAverage (@item.voteCount)
+            @item.imdbScore
         </td>
     </tr>
     i += 1;
-}*@
+}
         </tbody>
 </table>
 </div>
