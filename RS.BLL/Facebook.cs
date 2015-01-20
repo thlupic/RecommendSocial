@@ -16,7 +16,7 @@ namespace RS.BLL
     {
       
 
-        public static void CreateUser(dynamic me, List<UserCore.userData> users)
+        public static UserCore.userData CreateUser(dynamic me, List<UserCore.userData> users)
         {
 
             UserCore.userData user = new UserCore.userData();
@@ -149,6 +149,7 @@ namespace RS.BLL
             } 
 
             //RecommendMovies.recommend(user);
+            return user;
         }
 
 

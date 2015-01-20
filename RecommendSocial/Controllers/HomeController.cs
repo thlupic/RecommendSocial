@@ -16,6 +16,7 @@ namespace BootstrapMvcSample.Controllers
     public class HomeController : BootstrapBaseController
     {
         private static List<HomeInputModel> _models = ModelIntializer.CreateHomeInputModels();
+        private static UserCore.userData user = new UserCore.userData();
 
         public ActionResult Index()
         {
@@ -82,7 +83,7 @@ namespace BootstrapMvcSample.Controllers
 
             dynamic me = fb.Get("me?fields=first_name,last_name,id,likes,friends");
             //pronadi korisnika u bazi ili ako ne postoji spremi novog 
-            RS.BLL.Facebook.CreateUser(me, users);
+            user=RS.BLL.Facebook.CreateUser(me, users);
 
             return RedirectToAction("LogedIn");
         }
@@ -105,10 +106,11 @@ namespace BootstrapMvcSample.Controllers
             }
             else
             {
-                var movies = MovieDB.getAllMovies();
-                var moviesView = MovieDB.MappToCore(movies);
-                model.numberOfMovies = moviesView.Count();
-                model.movies = moviesView;
+                //var movies = MovieDB.getAllMovies();
+                var movies = RS.BLL.RecommendMovies.recommend(user);
+                //var moviesView = MovieDB.MappToCore(movies);
+                model.numberOfMovies = movies.Count;
+                model.movies = movies;
             }
             return View(model);
         }
