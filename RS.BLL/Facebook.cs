@@ -89,6 +89,8 @@ namespace RS.BLL
             // Set the auth cookie
             System.Web.Security.FormsAuthentication.SetAuthCookie(user.facebookID, false);
 
+
+            //inace update korisnika ako je nesto promijenio
             user.id = RS.BLL.Facebook.getUserID(user.facebookID);
             if (user.id == 0)
             {
