@@ -8,6 +8,7 @@ using System.IO;
 
 namespace WebService
 {
+    //GET i POST metode
     public class Methods
     {
         public string GET(string url)

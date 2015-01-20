@@ -174,6 +174,7 @@ namespace RS.BLL
             return moviesData;
         }
 
+        //dohvat svih filmova
         public static List<moviesCore.movieDB> getAllMovies()
         {
             List<moviesCore.movieDB> moviesDB = new List<moviesCore.movieDB>();
