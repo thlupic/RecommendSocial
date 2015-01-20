@@ -11,6 +11,7 @@ using System.Reflection;
 
 namespace WebService
 {
+    //metode za serijalizaciju i deserijalizaciju
     public class Serialization
     {
         public string Serializer<T>(T objectToSerialize)
