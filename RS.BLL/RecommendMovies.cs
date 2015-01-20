@@ -16,25 +16,6 @@ namespace RS.BLL
         //numOfMovies označava koliko filmova funkcija vraća
         public static List<moviesCore.movieDBData> recommend(UserCore.userData user)
         {
-            BsonClassMap.RegisterClassMap<moviesCore.movieDB>();
-
-            //*************** testni podaci *****************
-            /*UserCore.userData profile = new UserCore.userData();
-            profile.firstName = "Matija";
-            profile.lastName = "Močilac";
-            profile.likes = new List<UserCore.LikeData>();
-            profile.facebookID = "12345";
-
-            UserCore.LikeData like1 = new UserCore.LikeData();
-            like1.likeID = "1";
-            like1.name = "Big Hero 6";
-            profile.likes.Add(like1);
-
-            UserCore.LikeData like2 = new UserCore.LikeData();
-            like2.likeID = "2";
-            like2.name = "Furious 7";
-            profile.likes.Add(like2);*/
-            //************************************************
 
             string connectionString = "mongodb://rcsocial2:RCsocial2@ds031631.mongolab.com:31631/recommendsocial";
             MongoClient client = new MongoClient(connectionString);
@@ -45,29 +26,13 @@ namespace RS.BLL
 
             
             MongoCollection<moviesCore.movieDBDB> moviesCollection = database.GetCollection<moviesCore.movieDBDB>("Movies");
-            //UserCore.DBuserData profile = DataStorage.getUserData(1);  //dohvati korisnika s id-jem 1
-            
-            //Console.WriteLine("Name: {0}", profile.firstName);
-            //Console.WriteLine("Number of likes: {0}", profile.likes.Count);
-
-            var qResult = (from m in moviesCollection.AsQueryable<moviesCore.movieDBDB>() select m).Count();
-            Console.WriteLine("Movies count={0}", qResult);
-            
-      
+                  
             List<moviesCore.actorRT> actors = new List<moviesCore.actorRT>();   //skup glumaca koji se nalaze u svim filmovima koje je korisnik lajkao
             List<moviesCore.moviesGenreTMDB> genres = new List<moviesCore.moviesGenreTMDB>();   //skup id-jeva žanrova koje je korisnik lajkao
             List<string> directors = new List<string>();  //skup redatelja koji su režirali sve filmove koje je korisnik lajkao
             List<int> actorsMentioning = new List<int>();   //broj pojavljivanja pojedinog glumca u lajkovima
             List<int> genresMentioning = new List<int>();   //broj pojavljivanja pojedinog žanra u lajkovima
             List<int> directorsMentioning = new List<int>();    //broj pojavljivanja pojedinog redatelja u lajkovima
-
-
-            //******* testni ispis *********
-            /*var queryResult2 = moviesCollection.FindAll();
-
-            foreach (var v in queryResult2)
-                Console.WriteLine(v.IMDBID);*/
-            //******************************
 
 
             //za svaki lajk izdvoji glumce, žanrove i redatelje
@@ -125,25 +90,6 @@ namespace RS.BLL
             }
 
 
-            //*************************** TESTNI ISPIS **************************************
-            Console.WriteLine("Genres: {0}, Directors: {1}, Actors: {2}", genres.Count, directors.Count, actors.Count);
-            Console.Write("Genres mentioning: ");
-            foreach (var v in genresMentioning)
-                Console.Write("{0} ",v);
-            Console.WriteLine();
-            Console.Write("Directors mentioning: ");
-            foreach (int i in directorsMentioning)
-                Console.Write("{0} ", i);
-            Console.WriteLine();
-            Console.Write("Actors mentioning: ");
-            foreach (int i in actorsMentioning)
-                Console.Write("{0} ", i);
-            Console.WriteLine();
-            Console.WriteLine("Press any key to continue.");
-            Console.ReadLine();
-            //*****************************************************************************************
-
-
             //dohvati sve filmove koji imaju zajednička dva od tri parametra koja korisnik preferira: žanr i neki od glumaca,
             //žanr i redatelj ili redatelj i neki od glumaca
             var queryResult1 = (from m in moviesCollection.AsQueryable<moviesCore.movieDBDB>()
@@ -152,7 +98,6 @@ namespace RS.BLL
                                 || m.director.In(directors) && m.cast.ContainsAny(actors))
                                 select m);
 
-            Console.WriteLine("Broj pronađenih filmova: {0}", queryResult1.Count());
 
             //sumiraj ukupni broj spominjanja za glumce, redatelje i žanrove
             int totalDirectorMentionings = 0;
@@ -212,30 +157,41 @@ namespace RS.BLL
                     movieRank.rank += directorSignificance[index] * queryResult1.Count();                      
                 }
 
+                //pogledaj je li netko od prijatelja lajkao taj film
+                foreach (var f in user.friends)
+                {
+                    foreach (var l in f.likes)
+                    {
+                        if (l.name.Equals(v.title)) //prijatelj je lajkao
+                            movieRank.rank = (1 + 1 / user.friends.Count) * movieRank.rank;
+                    }
+                }
+
                 rankedMovies.Add(movieRank);      
             }
 
             //poredaj filmove po rangu
             rankedMovies = rankedMovies.OrderByDescending(o => o.rank).ToList();
-            //foreach (var v in rankedMovies)
-            //    Console.WriteLine("{0}\t{1}", v.movie.title, v.rank);
 
             //lista koja sadrži filmove koji će biti prikazani korisniku
             List<moviesCore.movieDBData> returnMovies = new List<moviesCore.movieDBData>();
-
-            //ako je rezultat vratio manje filmova od zadanog
-            //if (rankedMovies.Count < numOfMovies)
-            //    numOfMovies = rankedMovies.Count;
  
-
+            bool liked=false;
             for (int i = 0; i < rankedMovies.Count(); i++)
             {
-                returnMovies.Add(rankedMovies.ElementAt(i).movie);
-                Console.WriteLine("{0}\t{1}", rankedMovies.ElementAt(i).movie.title, rankedMovies.ElementAt(i).rank);
+                liked=false;
+                foreach (var v in user.likes)
+                {
+                    if (v.name.Equals(rankedMovies.ElementAt(i).movie.title))
+                    {
+                        liked = true;
+                        break;
+                    }
+                }
+                if (liked==false)   //ako film nije već lajkan
+                    returnMovies.Add(rankedMovies.ElementAt(i).movie);
             }
 
-            Console.WriteLine("Press any key to continue.");
-            Console.ReadLine();
             server.Disconnect();
             return returnMovies;
         }
