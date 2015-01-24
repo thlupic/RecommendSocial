@@ -68,6 +68,12 @@ namespace RS.DAL
             collection.Insert(movie);
         }
 
+        public static void storeMovieNew(moviesCore.movieDBData movie)
+        {
+            MongoCollection<moviesCore.movieDBData> collection = database.GetCollection<moviesCore.movieDBData>("MoviesNew");
+            collection.Insert(movie);
+        }
+
         public static void storeGenre(moviesCore.moviesGenreTMDB genre)
         {
             MongoCollection<moviesCore.moviesGenreTMDB> collection = database.GetCollection<moviesCore.moviesGenreTMDB>("Genres");
@@ -76,7 +82,7 @@ namespace RS.DAL
 
         public static List<moviesCore.movieDB> getMovies()
         {
-            MongoCollection<moviesCore.movieDBDB> collection = database.GetCollection<moviesCore.movieDBDB>("Movies");
+            MongoCollection<moviesCore.movieDBDB> collection = database.GetCollection<moviesCore.movieDBDB>("MoviesNew");
             var movieData = collection.AsQueryable<moviesCore.movieDBDB>().ToList();
             var moviesData = new List<moviesCore.movieDB>();
             foreach (var item in movieData)

@@ -10,12 +10,12 @@ namespace WebService
 {
     public class IMDBScrape
     {
-        //dobiva FB ID
+        //getting FB page ID
         public string getFacebookID(string IMDBID)
         {
             try
             {
-                string URI = String.Format("http://www.imdb.com/title/tt{0}", IMDBID);
+                string URI = String.Format("http://www.imdb.com/title/tt{0}", "0816692");
 
                 string html = new WebClient().DownloadString(URI);
 
@@ -25,50 +25,25 @@ namespace WebService
                 HtmlNode docNode = htmlDoc.DocumentNode;
                 HtmlNodeCollection nodes = docNode.SelectNodes("//div[id=\"titleDetails\"]");
 
-                var singleNode = docNode.SelectSingleNode("//*[@id=\"titleDetails\"]");
+                var singleNode = docNode.SelectSingleNode("//*[@id=\"titleDetails\"]");                
 
-                var nodewithSites = singleNode.ChildNodes[5];
+                var divFacebook = singleNode.ChildNodes[5].ChildNodes[3];
 
-                var divFacebook = nodewithSites.ChildNodes[3];
+                var FBLink = String.Format("http://www.imdb.com{0}", divFacebook.Attributes[0].Value);
 
-                var FBText = divFacebook.Attributes[0].Value;
+                var scrapper = new HTMLScrapping.WebSession();
+                var FBHTML = scrapper.RequestPage(FBLink);
 
-                if (FBText.Contains("offsite-facebook"))
-                {
-                    var IMDBFBLink = String.Format("http://www.imdb.com{0}", FBText);
+                var FBHTML1 = scrapper.RequestPage(FBLink);
 
-                    //var scrapper = new HTMLScrapping.WebSession();
-                    //var FBHTML = scrapper.RequestPage(IMDBFBLink);
+                var pageIDString = FBHTML1.Html.Substring(FBHTML1.Html.IndexOf("pageID"), 50).Split(':')[1].Split(',')[0];
 
-                    return IMDBFBLink;
-                }
-
-                if (nodes != null)
-                {
-                    var alert = "!!!";
-                }
+                return String.Format("https://www.facebook.com/{0}", pageIDString);
             }
             catch (Exception e)
             {
                 var ex = e;
             }
-
-            return null;
-        }
-
-        //scrapea frendove
-        public string getFacebookFriends(string facebookPageID)
-        {
-            facebookPageID = "564976613593712";
-            string URI = String.Format("https://www.facebook.com/browse/friended_fans_of/?page_id={0}", facebookPageID);
-
-            string html = new WebClient().DownloadString(URI);
-
-            HtmlDocument htmlDoc = new HtmlDocument();
-            htmlDoc.LoadHtml(html);
-
-            HtmlNode docNode = htmlDoc.DocumentNode;
-            var node = docNode.SelectSingleNode("//div[id=\"u_0_0\"]");
 
             return null;
         }

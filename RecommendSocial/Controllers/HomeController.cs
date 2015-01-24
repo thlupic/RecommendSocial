@@ -107,6 +107,17 @@ namespace BootstrapMvcSample.Controllers
                 model.movies = movies;
                 model.numberOfMovies = movies.Count();
             }
+            else if (MoviesFetch == "fetch2")
+            {
+                var movies = MovieDB.getMoviesByGenresNew();
+                model.movies = movies;
+                model.numberOfMovies = movies.Count();
+            }
+            else if (MoviesFetch == "FBtest")
+            {
+                var scrape = new WebService.IMDBScrape();
+                scrape.getFacebookID("222222222");
+            }
             else
             {
                 //dohvat filmova iz baze po funkciji za preporuku
